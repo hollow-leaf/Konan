@@ -7,10 +7,6 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: [
-      "cloudflare-ipfs.com",
-      "ipfs.io",
-    ],
     unoptimized: true,
   },
 };
