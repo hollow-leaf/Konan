@@ -24,7 +24,7 @@ const COMMENTS = [
 export function Comments() {
   return (
     <section className="w-full max-w-2xl mx-auto flex flex-col px-5 pb-20">
-      <Typography variant="h4" className=" md:text-center" color="blue-gray" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+      <Typography variant="h4" className=" md:text-center" color="blue-gray" placeholder="" >
         3 Comments
       </Typography>
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
@@ -44,7 +44,7 @@ export function Comments() {
         variant="h4"
         className="my-6 md:my-14 md:text-center"
         color="blue-gray"
-        placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+        placeholder="" 
       >
         Post Your Comment
       </Typography>

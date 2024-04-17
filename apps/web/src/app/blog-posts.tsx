@@ -36,16 +36,16 @@ const SIMPLE_CONTENT = [
 export function BlogPost() {
   return (
     <section className="w-full max-w-6xl mx-auto flex flex-col items-center px-4 py-20">
-      <Button color="gray" className="mb-3" size="sm" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+      <Button color="gray" className="mb-3" size="sm" placeholder="" >
         BLOG
       </Button>
-      <Typography variant="h3" className="text-center" color="blue-gray" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+      <Typography variant="h3" className="text-center" color="blue-gray" placeholder="" >
         Check out the latest articles
       </Typography>
       <Typography
         variant="lead"
         className="mt-2 mb-8 w-full text-center font-normal !text-gray-500 max-w-4xl"
-        placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+        placeholder="" 
       >
         Stay at the forefront of the latest developments in the world of
         biology, as our team of expert writers and researchers bring you fresh
@@ -55,16 +55,16 @@ export function BlogPost() {
       <div className="mt-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <div className=" md:border-r px-3 border-blue-gray-100">
           <div className="!border-b  border-blue-gray-100 mb-5">
-            <Card shadow={false} className="p-0" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
-              <CardBody className="p-0 pb-5" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+            <Card shadow={false} className="p-0" placeholder="" >
+              <CardBody className="p-0 pb-5" placeholder="" >
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-4 !text-gray-900 "
-                  placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+                  placeholder="" 
                 >
                   Exploring the Role of Epigenetics in Inherited Traits
                 </Typography>
-                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " placeholder="" >
                   Investigate the emerging field of epigenetics and its impact
                   on understanding how environmental factors can influence gene
                   expression and inheritance.
@@ -80,10 +80,10 @@ export function BlogPost() {
                     />
                   </div>
                   <div>
-                    <Typography className="!font-bold !text-sm text-gray-900" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                    <Typography className="!font-bold !text-sm text-gray-900" placeholder="" >
                       Mathew Glock
                     </Typography>
-                    <Typography className="!font-normal !text-xs text-gray-500" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                    <Typography className="!font-normal !text-xs text-gray-500" placeholder="" >
                       Author
                     </Typography>
                   </div>
@@ -92,16 +92,16 @@ export function BlogPost() {
             </Card>
           </div>
           <div className="!border-b md:border-none border-blue-gray-100 mb-5">
-            <Card shadow={false} className="p-0" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
-              <CardBody className="p-0 pb-5" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+            <Card shadow={false} className="p-0" placeholder="" >
+              <CardBody className="p-0 pb-5" placeholder="" >
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-4 !text-gray-900 "
-                  placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+                  placeholder="" 
                 >
                   How Gut Bacteria Affect Our Health and Well-being
                 </Typography>
-                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " placeholder="" >
                   Dive into the latest research on the human microbiome.
                 </Typography>
                 <div className="flex items-center gap-3">
@@ -115,10 +115,10 @@ export function BlogPost() {
                     />
                   </div>
                   <div>
-                    <Typography className="!font-bold !text-sm text-gray-900" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                    <Typography className="!font-bold !text-sm text-gray-900" placeholder="" >
                       Mathew Glock
                     </Typography>
-                    <Typography className="!font-normal !text-xs text-gray-500" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                    <Typography className="!font-normal !text-xs text-gray-500" placeholder="" >
                       Author
                     </Typography>
                   </div>
@@ -132,8 +132,8 @@ export function BlogPost() {
         </div>
         <div className="md:border-l px-3 border-blue-gray-100">
           <div className="!border-b  border-blue-gray-100 mb-6">
-            <Card shadow={false} className="p-0" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
-              <CardBody className="p-0 pb-5" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+            <Card shadow={false} className="p-0" placeholder="" >
+              <CardBody className="p-0 pb-5" placeholder="" >
                 <div className="w-full mb-4 h-[149px] ">
                   <Image
                     width={768}
@@ -146,19 +146,19 @@ export function BlogPost() {
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-6 !text-gray-900"
-                  placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+                  placeholder="" 
                 >
                   Biomimicry: Nature-Inspired Innovations
                 </Typography>
-                <Typography className="!font-bold !text-sm text-gray-700" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                <Typography className="!font-bold !text-sm text-gray-700" placeholder="" >
                   by Mathew Glock
                 </Typography>
               </CardBody>
             </Card>
           </div>
           <div className="!border-b md:border-none border-blue-gray-100 mb-6">
-            <Card shadow={false} className="p-0" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
-              <CardBody className="p-0 pb-5" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+            <Card shadow={false} className="p-0" placeholder="" >
+              <CardBody className="p-0 pb-5" placeholder="" >
                 <div className="w-full mb-4 h-[149px]">
                   <Image
                     width={768}
@@ -171,11 +171,11 @@ export function BlogPost() {
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-6 !text-gray-900"
-                  placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+                  placeholder="" 
                 >
                   Bringing Back Extinct Species
                 </Typography>
-                <Typography className="!font-bold !text-sm text-gray-700" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                <Typography className="!font-bold !text-sm text-gray-700" placeholder="" >
                   by Emma Roberts
                 </Typography>
               </CardBody>

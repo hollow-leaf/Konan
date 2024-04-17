@@ -9,14 +9,14 @@ function Hero() {
     <div className="absolute inset-0 h-full w-full bg-gray-900/75" />
     <div className="grid min-h-screen px-8">
       <div className="container relative z-10 my-auto mx-auto grid place-items-center text-center">
-        <Typography variant="h1" color="white" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+        <Typography variant="h1" color="white" placeholder="" >
           Exploring the Wonders of Biologyat Night...
         </Typography>
         <Typography
           variant="lead"
           color="white"
           className="mt-4 mb-12 w-full md:max-w-full lg:max-w-3xl"
-          placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+          placeholder="" 
         >
           Introduction: Join us in a a journey into the world of life!
         </Typography>
@@ -24,18 +24,18 @@ function Hero() {
           variant="paragraph"
           color="white"
           className="mt-1 mb-7 font-medium uppercase"
-          placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+          placeholder="" 
         >
           Connect with us on:
         </Typography>
         <div className="gap-8 flex">
-          <IconButton variant="text" color="white" size="sm" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+          <IconButton variant="text" color="white" size="sm" placeholder="" >
             <i className="fa-brands fa-twitter text-base" />
           </IconButton>
-          <IconButton variant="text" color="white" size="sm" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+          <IconButton variant="text" color="white" size="sm" placeholder="" >
             <i className="fa-brands fa-facebook text-base" />
           </IconButton>
-          <IconButton variant="text" color="white" size="sm" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+          <IconButton variant="text" color="white" size="sm" placeholder="" >
             <i className="fa-brands fa-instagram text-base" />
           </IconButton>
         </div>

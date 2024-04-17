@@ -18,7 +18,7 @@ export function NewComment() {
         <Typography
           variant="small"
           className=" font-bold flex items-center gap-2 !text-gray-900"
-          placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}
+          placeholder="" 
         >
           Tina Andrew
         </Typography>
@@ -31,7 +31,7 @@ export function NewComment() {
             variant="static"
             placeholder="Write a nice reply or go home..."
           />
-          <Button color="gray" className="mt-4" size="md" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+          <Button color="gray" className="mt-4" size="md" placeholder="" >
             button
           </Button>
         </form>
