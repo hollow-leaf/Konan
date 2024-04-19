@@ -1,7 +1,7 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
-import { FixedPlugin, Layout } from "@/components";
+import { Layout } from "@/components";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -10,11 +10,14 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "NextJS Tailwind Blog Post Details Page",
+  manifest: "/manifest.json",
+  title: "NextJS Tailwind Template",
   description:
-    "Download Tailwind Blog Page, a Free Template developed by Creative Tim. Based on Tailwind CSS and Material Tailwind, see the live demo on our site and start sharing your stories with the world.",
+    "Download this nextjs app, that is created by Jake Kuo.",
 };
-
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
+};
 export default function RootLayout({
   children,
 }: {
@@ -35,7 +38,6 @@ export default function RootLayout({
       <body className={roboto.className}>
         <Layout>
           {children}
-          <FixedPlugin />
         </Layout>
       </body>
     </html>

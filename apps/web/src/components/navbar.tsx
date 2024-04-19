@@ -66,13 +66,13 @@ export function Navbar() {
       <div className="container mx-auto flex items-center justify-between">
         <Typography
           as="a"
-          href="https://www.material-tailwind.com"
+          href="/"
           target="_blank"
           className="text-lg font-bold"
           color={isScrolling ? "blue-gray" : "white"}
           placeholder="" 
         >
-          Material Tailwind
+          KonanNote
         </Typography>
         <ul
           className={`ml-10 hidden items-center gap-6 lg:flex ${
@@ -106,20 +106,24 @@ export function Navbar() {
         </IconButton>
       </div>
       <Collapse open={open}>
-        <div className="container mx-auto bg-white rounded-lg py-4 px-6 mt-3 border-t border-gray-200">
-          <ul className="flex flex-col gap-4">
-            {NAV_MENU.map((name) => (
-              <NavItem key={name}>{name}</NavItem>
-            ))}
-          </ul>
-          <div className="mt-6 flex items-center gap-2">
-            <Button variant="text" placeholder="" >Log in</Button>
-            <a href="https://www.material-tailwind.com/blocks" target="_blank">
-              <Button color="gray" placeholder="" >blocks</Button>
-            </a>
-          </div>
+      <div className="container bg-gray-900 rounded-lg mx-auto opacity-75">
+        <ul className="flex flex-col gap-4 items-center justify-center">
+          {NAV_MENU.map((name) => (
+            <NavItem key={name}>{name}</NavItem>
+          ))}
+        </ul>
+        <div className="mt-6 flex gap-2 items-center justify-center">
+          <Button variant="text" color="white" placeholder="">
+            Log in
+          </Button>
+          <a href="https://www.material-tailwind.com/blocks" target="_blank">
+            <Button color="gray" placeholder="">
+              blocks
+            </Button>
+          </a>
         </div>
-      </Collapse>
+      </div>
+    </Collapse>
     </MTNavbar>
   );
 }

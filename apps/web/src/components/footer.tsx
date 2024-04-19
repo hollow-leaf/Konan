@@ -1,86 +1,35 @@
 import React from "react";
 import { Typography } from "@material-tailwind/react";
 
-const LINKS = [
-  {
-    title: "Company",
-    items: ["About Us", "Careers"],
-  },
-  {
-    title: "Pages",
-    items: ["Login", "Register"],
-  },
-  {
-    title: "Legal",
-    items: ["Terms", "Privacy"],
-  },
-];
-
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="mt-10 px-8 pt-20">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography
-            as="a"
-            href="https://www.material-tailwind.com"
-            target="_blank"
-            variant="h4"
-            className="mb-6"
-            placeholder="" 
-          >
+    <footer className="container mx-auto">
+      <div className="flex flex-wrap items-end justify-center gap-y-4 gap-x-8 border-t border-blue-gray-50 py-6 md:justify-between">
+        <div className="text-center md:text-start">
+          <Typography className="font-normal !text-blue-700 flex" placeholder="" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
+            </svg>
+            <a href="https://github.com/hollow-leaf/Konan">Following our Github here !</a>
+          </Typography>
+        </div>
+        <Typography
+          color="gray"
+          className="text-center font-normal !text-gray-700"
+          placeholder=""
+        >
+          &copy; {CURRENT_YEAR} Made with{" "}
+          <a href="https://www.material-tailwind.com" target="_blank">
             Material Tailwind
-          </Typography>
-          <div className="grid grid-cols-3 justify-between gap-4">
-            {LINKS.map(({ title, items }) => (
-              <ul key={title}>
-                <Typography variant="h6" color="blue-gray" className="mb-4" placeholder="" >
-                  {title}
-                </Typography>
-                {items.map((link) => (
-                  <li key={link}>
-                    <Typography
-                      as="a"
-                      href="#"
-                      variant="small"
-                      className="py-1 font-normal !text-gray-700 transition-colors hover:!text-gray-900"
-                      placeholder="" 
-                    >
-                      {link}
-                    </Typography>
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-        </div>
-        <div className="mt-16 flex flex-wrap items-end justify-center gap-y-4 gap-x-8 border-t border-blue-gray-50 py-6 md:justify-between">
-          <div className="text-center md:text-start">
-            <Typography variant="h4" color="blue-gray" className="mb-2" placeholder="" >
-              The reward for getting on the stage is fame.
-            </Typography>
-            <Typography className="font-normal !text-gray-700" placeholder="" >
-              The price of fame is you can&apos;t get off the stage.
-            </Typography>
-          </div>
-          <Typography
-            color="gray"
-            className="text-center font-normal !text-gray-700"
-            placeholder="" 
-          >
-            &copy; {CURRENT_YEAR} Made with{" "}
-            <a href="https://www.material-tailwind.com" target="_blank">
-              Material Tailwind
-            </a>{" "}
-            by{" "}
-            <a href="https://www.creative-tim.com" target="_blank">
-              Creative Tim
-            </a>
-            .
-          </Typography>
-        </div>
+          </a>{" "}
+          by{" "}
+          <a href="https://www.creative-tim.com" target="_blank">
+            Jake Kuo
+          </a>
+          .
+        </Typography>
       </div>
     </footer>
   );

@@ -1,47 +1,23 @@
 "use client";
-import React from "react";
-import { IconButton, Typography } from "@material-tailwind/react";
-
+import React, { Suspense } from "react";
+import HeroCard from "@/components/herocard";
 
 function Hero() {
   return (
-    <div className="relative min-h-screen w-full bg-[url('/image/image-4.jpeg')] bg-cover bg-no-repeat">
-    <div className="absolute inset-0 h-full w-full bg-gray-900/75" />
-    <div className="grid min-h-screen px-8">
-      <div className="container relative z-10 my-auto mx-auto grid place-items-center text-center">
-        <Typography variant="h1" color="white" placeholder="" >
-          Exploring the Wonders of Biologyat Night...
-        </Typography>
-        <Typography
-          variant="lead"
-          color="white"
-          className="mt-4 mb-12 w-full md:max-w-full lg:max-w-3xl"
-          placeholder="" 
-        >
-          Introduction: Join us in a a journey into the world of life!
-        </Typography>
-        <Typography
-          variant="paragraph"
-          color="white"
-          className="mt-1 mb-7 font-medium uppercase"
-          placeholder="" 
-        >
-          Connect with us on:
-        </Typography>
-        <div className="gap-8 flex">
-          <IconButton variant="text" color="white" size="sm" placeholder="" >
-            <i className="fa-brands fa-twitter text-base" />
-          </IconButton>
-          <IconButton variant="text" color="white" size="sm" placeholder="" >
-            <i className="fa-brands fa-facebook text-base" />
-          </IconButton>
-          <IconButton variant="text" color="white" size="sm" placeholder="" >
-            <i className="fa-brands fa-instagram text-base" />
-          </IconButton>
-        </div>
-      </div>
+    <div className="relative min-h-screen w-full overflow-hidden flex justify-center items-center">
+      <video autoPlay muted loop className="absolute inset-0 z-0 object-cover min-h-screen">
+        <source src="/snow_moon.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 h-full w-full bg-gray-900/75" />
+      <Suspense fallback={<div>Loading...</div>}>
+        <HeroCard />
+      </Suspense>
     </div>
-  </div>
   );
 }
 export default Hero;
+
+
+
+
+
