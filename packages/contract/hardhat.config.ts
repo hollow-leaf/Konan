@@ -1,17 +1,17 @@
-import { HardhatUserConfig } from "hardhat/config"
-import { NetworkUserConfig } from "hardhat/types"
+import { HardhatUserConfig } from "hardhat/config";
+import { NetworkUserConfig } from "hardhat/types";
 // hardhat plugin
-import "@nomiclabs/hardhat-ethers"
-import "@nomicfoundation/hardhat-toolbox"
+import "@nomiclabs/hardhat-ethers";
+import "@nomicfoundation/hardhat-toolbox";
 
-import { config as dotenvConfig } from "dotenv"
-import { resolve } from "path"
-import { loadTasks } from "./scripts/helpers/hardhatConfigHelpers"
+import { config as dotenvConfig } from "dotenv";
+import { resolve } from "path";
+import { loadTasks } from "./scripts/helpers/hardhatConfigHelpers";
 
-dotenvConfig({ path: resolve(__dirname, "./.env") })
+dotenvConfig({ path: resolve(__dirname, "./.env") });
 
-const taskFolder = ["tasks"]
-loadTasks(taskFolder)
+const taskFolder = ["tasks"];
+loadTasks(taskFolder);
 
 const chainIds = {
   ganache: 1337,
@@ -26,58 +26,58 @@ const chainIds = {
   "scroll-sepolia-testnet": 534351,
   "op-sepolia": 11155420,
   "linea-goerli": 59140,
-}
+};
 
 // Ensure that we have all the environment variables we need.
-const pk: string | undefined = process.env.PRIVATE_KEY
+const pk: string | undefined = process.env.PRIVATE_KEY;
 if (!pk) {
-  throw new Error("Please set your pk in a .env file")
+  throw new Error("Please set your pk in a .env file");
 }
 
-const infuraApiKey: string | undefined = process.env.INFURA_API_KEY
+const infuraApiKey: string | undefined = process.env.INFURA_API_KEY;
 if (!infuraApiKey) {
-  throw new Error("Please set your INFURA_API_KEY in a .env file")
+  throw new Error("Please set your INFURA_API_KEY in a .env file");
 }
 
-function getChainConfig (chain: keyof typeof chainIds): NetworkUserConfig {
-  let jsonRpcUrl: string
+function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
+  let jsonRpcUrl: string;
   switch (chain) {
     case "quorum":
-      jsonRpcUrl = process.env.NETWORK_URL || ""
-      break
+      jsonRpcUrl = process.env.NETWORK_URL || "";
+      break;
     case "opbnb":
-      jsonRpcUrl = "https://opbnb-mainnet-rpc.bnbchain.org"
-      break
+      jsonRpcUrl = "https://opbnb-mainnet-rpc.bnbchain.org";
+      break;
     case "opbnb-testnet":
-      jsonRpcUrl = "https://opbnb-testnet-rpc.bnbchain.org"
-      break
+      jsonRpcUrl = "https://opbnb-testnet-rpc.bnbchain.org";
+      break;
     case "zircuit":
-      jsonRpcUrl = "https://zircuit1.p2pify.com"
-      break
+      jsonRpcUrl = "https://zircuit1.p2pify.com";
+      break;
     case "scroll-sepolia-testnet":
-      jsonRpcUrl = "https://scroll-sepolia.blockpi.network/v1/rpc/public"
-      break
+      jsonRpcUrl = "https://scroll-sepolia.blockpi.network/v1/rpc/public";
+      break;
     case "op-sepolia":
-      jsonRpcUrl = "https://sepolia.optimism.io"
-      break
+      jsonRpcUrl = "https://sepolia.optimism.io";
+      break;
     case "linea-goerli":
-      jsonRpcUrl = "https://rpc.goerli.linea.build"
-      break
+      jsonRpcUrl = "https://rpc.goerli.linea.build";
+      break;
     default:
-      jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
+      jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`;
   }
   return {
     accounts: [`0x${pk}`],
     chainId: chainIds[chain],
     url: jsonRpcUrl,
-  }
+  };
 }
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      // TODO: SHOULD BE REMOVED! 
+      // TODO: SHOULD BE REMOVED!
       allowUnlimitedContractSize: false,
       chainId: chainIds.hardhat,
     },
@@ -138,63 +138,70 @@ const config: HardhatUserConfig = {
       "linea-goerli": process.env.LINEA_API_KEY || "",
     },
     // https://docs.bscscan.com/v/opbnb-testnet/
-    customChains: [{
-      network: "quorum",
-      chainId: chainIds.quorum,
-      urls: {
-        apiURL: `${process.env.BLOCKSCOUT_URL}/api`,
-        browserURL: process.env.BLOCKSCOUT_URL as string,
+    customChains: [
+      {
+        network: "quorum",
+        chainId: chainIds.quorum,
+        urls: {
+          apiURL: `${process.env.BLOCKSCOUT_URL}/api`,
+          browserURL: process.env.BLOCKSCOUT_URL as string,
+        },
       },
-    },{
-      network: "opbnb",
-      chainId: chainIds.opbnb,
-      urls: {
-        apiURL: "https://api-opbnb.bscscan.com/api",
-        browserURL: "https://opbnb.bscscan.com",
+      {
+        network: "opbnb",
+        chainId: chainIds.opbnb,
+        urls: {
+          apiURL: "https://api-opbnb.bscscan.com/api",
+          browserURL: "https://opbnb.bscscan.com",
+        },
       },
-    },{
-      network: "opbnb-testnet",
-      chainId: chainIds["opbnb-testnet"],
-      urls: {
-        apiURL: "https://api-opbnb-testnet.bscscan.com/api",
-        browserURL: "https://opbnb-testnet.bscscan.com/",
+      {
+        network: "opbnb-testnet",
+        chainId: chainIds["opbnb-testnet"],
+        urls: {
+          apiURL: "https://api-opbnb-testnet.bscscan.com/api",
+          browserURL: "https://opbnb-testnet.bscscan.com/",
+        },
       },
-    },{
-      network: "zircuit",
-      chainId: chainIds["zircuit"],
-      urls: {
-        apiURL: 'https://explorer.zircuit.com/api/contractVerifyHardhat',
-        browserURL: 'https://explorer.zircuit.com',
-      }
-    },{
-      network: "scroll-sepolia-testnet",
-      chainId: chainIds["scroll-sepolia-testnet"],
-      urls: {
-        apiURL: "https://api-sepolia.scrollscan.com/api",
-        browserURL: "https://sepolia.scrollscan.com"
-      }
-    },{
-      network: "op-sepolia",
-      chainId: chainIds["op-sepolia"],
-      urls: {
-        apiURL: "https://api-sepolia-optimistic.etherscan.io/api",
-        browserURL: "https://sepolia-optimism.etherscan.io"
-      }
-    },{
-      network: "linea-goerli",
-      chainId: chainIds["linea-goerli"],
-      urls: {
-        apiURL: "https://api-testnet.lineascan.build/api",
-        browserURL: "https://goerli.lineascan.build"
-      }
-    }
+      {
+        network: "zircuit",
+        chainId: chainIds["zircuit"],
+        urls: {
+          apiURL: "https://explorer.zircuit.com/api/contractVerifyHardhat",
+          browserURL: "https://explorer.zircuit.com",
+        },
+      },
+      {
+        network: "scroll-sepolia-testnet",
+        chainId: chainIds["scroll-sepolia-testnet"],
+        urls: {
+          apiURL: "https://api-sepolia.scrollscan.com/api",
+          browserURL: "https://sepolia.scrollscan.com",
+        },
+      },
+      {
+        network: "op-sepolia",
+        chainId: chainIds["op-sepolia"],
+        urls: {
+          apiURL: "https://api-sepolia-optimistic.etherscan.io/api",
+          browserURL: "https://sepolia-optimism.etherscan.io",
+        },
+      },
+      {
+        network: "linea-goerli",
+        chainId: chainIds["linea-goerli"],
+        urls: {
+          apiURL: "https://api-testnet.lineascan.build/api",
+          browserURL: "https://goerli.lineascan.build",
+        },
+      },
     ],
   },
 
   gasReporter: {
     currency: "USD",
     gasPrice: 100,
-    enabled: process.env.REPORT_GAS as string === "true",
+    enabled: (process.env.REPORT_GAS as string) === "true",
     excludeContracts: [],
     src: "./contracts",
   },
@@ -202,6 +209,6 @@ const config: HardhatUserConfig = {
     outDir: "typechain",
     target: "ethers-v5",
   },
-}
+};
 
-export default config
+export default config;

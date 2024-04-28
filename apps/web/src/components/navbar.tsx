@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 import {
   Web as WebIcon,
@@ -12,7 +12,7 @@ import {
   Close as CloseIcon,
   Menu as MenuIcon,
   Book as BookIcon,
-} from "@mui/icons-material"
+} from "@mui/icons-material";
 import {
   AppBar,
   Button,
@@ -25,10 +25,10 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
-} from "@mui/material"
+} from "@mui/material";
 
-import { NavbarItemType } from "@/models/types/uiTypes"
-import { ConnectButton } from "@/components"
+import { NavbarItemType } from "@/models/types/uiTypes";
+import { ConnectButton } from "@/components";
 
 const NAV_MENU: NavbarItemType[] = [
   {
@@ -55,30 +55,30 @@ const NAV_MENU: NavbarItemType[] = [
     href: "/",
     target: "_blank",
   },
-]
+];
 
 export function Navbar() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => setOpen((cur) => !cur)
+  const handleOpen = () => setOpen((cur) => !cur);
 
   useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpen(false),
-    )
-  }, [])
+    );
+  }, []);
 
   useEffect(() => {
     if (window.location.hash) {
       const element = document.getElementById(
         window.location.hash.substring(1),
-      )
+      );
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [])
+  }, []);
 
   return (
     <AppBar
@@ -110,7 +110,11 @@ export function Navbar() {
         >
           {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
             <Link key={name} href={href} target={target} passHref>
-              <Button color="secondary" startIcon={Icon} className="rounded-full hover:bg-slate-900 font-bold">
+              <Button
+                color="secondary"
+                startIcon={Icon}
+                className="rounded-full hover:bg-slate-900 font-bold"
+              >
                 {name}
               </Button>
             </Link>
@@ -145,13 +149,23 @@ export function Navbar() {
           {open ? <CloseIcon /> : <MenuIcon />}
         </IconButton>
       </Toolbar>
-      <Collapse className="bg-black flex" in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        className="bg-black flex"
+        in={open}
+        timeout="auto"
+        unmountOnExit
+      >
         <List component="nav" className="flex flex-col items-start">
           {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
             <Link key={name} href={href} target={target} passHref>
               <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
-                <Button onClick={handleOpen} className="text-purple-700 rounded-full hover:bg-slate-900 font-bold">
-                  <ListItemIcon className="text-purple-700">{Icon}</ListItemIcon>
+                <Button
+                  onClick={handleOpen}
+                  className="text-purple-700 rounded-full hover:bg-slate-900 font-bold"
+                >
+                  <ListItemIcon className="text-purple-700">
+                    {Icon}
+                  </ListItemIcon>
                   <ListItemText primary={name} />
                 </Button>
               </Box>
@@ -177,7 +191,7 @@ export function Navbar() {
         </List>
       </Collapse>
     </AppBar>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

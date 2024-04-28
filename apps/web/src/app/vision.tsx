@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-import { AccessTime, People, Settings } from "@mui/icons-material"
-import { Box, Typography } from "@mui/material"
+import { AccessTime, People, Settings } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 
 export function Vision() {
   return (
@@ -13,7 +13,10 @@ export function Vision() {
       <Box className="container mx-auto px-4 md:px-6">
         <Box className="flex flex-col items-center justify-center space-y-4 text-center">
           <Box className="space-y-2">
-            <Typography variant="h3" className="text-gray-400 text-3xl font-bold sm:text-6xl">
+            <Typography
+              variant="h3"
+              className="text-gray-400 text-3xl font-bold sm:text-6xl"
+            >
               How do we use celestia?
             </Typography>
             <Typography
@@ -77,5 +80,5 @@ export function Vision() {
         </Box>
       </Box>
     </Box>
-  )
+  );
 }

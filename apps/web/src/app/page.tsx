@@ -1,5 +1,5 @@
-import { Navbar, Footer } from "@/components"
-import { Hero, Vision } from "@/app"
+import { Navbar, Footer } from "@/components";
+import { Hero, Vision } from "@/app";
 
 export default function Profile() {
   return (
@@ -9,5 +9,5 @@ export default function Profile() {
       <Vision />
       <Footer />
     </>
-  )
+  );
 }

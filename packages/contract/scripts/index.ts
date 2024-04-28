@@ -1,1 +1,1 @@
-export { loadContract } from "./config"
+export { loadContract } from "./config";

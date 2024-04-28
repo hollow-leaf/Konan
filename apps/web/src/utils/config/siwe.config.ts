@@ -1,86 +1,90 @@
-import { SiweMessage } from 'siwe'
-import { createSIWEConfig } from '@web3modal/siwe'
-import { getCsrfToken, signIn, signOut, getSession } from 'next-auth/react'
-import type { SIWECreateMessageArgs, SIWESession, SIWEVerifyMessageArgs } from '@web3modal/siwe'
+import { SiweMessage } from "siwe";
+import { createSIWEConfig } from "@web3modal/siwe";
+import { getCsrfToken, signIn, signOut, getSession } from "next-auth/react";
+import type {
+  SIWECreateMessageArgs,
+  SIWESession,
+  SIWEVerifyMessageArgs,
+} from "@web3modal/siwe";
 
 interface SIWEConfig {
-    // Required
-    getNonce: () => Promise<string>
-    createMessage: (args: SIWECreateMessageArgs) => string
-    verifyMessage: (args: SIWEVerifyMessageArgs) => Promise<boolean>
-    getSession: () => Promise<SIWESession | null>
-    signOut: () => Promise<boolean>
-  
-    // Optional
-    onSignIn?: (session?: SIWESession) => void
-    onSignOut?: () => void
-    // Defaults to true
-    enabled?: boolean
-    // In milliseconds, defaults to 5 minutes
-    nonceRefetchIntervalMs?: number
-    // In milliseconds, defaults to 5 minutes
-    sessionRefetchIntervalMs?: number
-    // Defaults to true
-    signOutOnDisconnect?: boolean
-    // Defaults to true
-    signOutOnAccountChange?: boolean
-    // Defaults to true
-    signOutOnNetworkChange?: boolean
-  }
+  // Required
+  getNonce: () => Promise<string>;
+  createMessage: (args: SIWECreateMessageArgs) => string;
+  verifyMessage: (args: SIWEVerifyMessageArgs) => Promise<boolean>;
+  getSession: () => Promise<SIWESession | null>;
+  signOut: () => Promise<boolean>;
+
+  // Optional
+  onSignIn?: (session?: SIWESession) => void;
+  onSignOut?: () => void;
+  // Defaults to true
+  enabled?: boolean;
+  // In milliseconds, defaults to 5 minutes
+  nonceRefetchIntervalMs?: number;
+  // In milliseconds, defaults to 5 minutes
+  sessionRefetchIntervalMs?: number;
+  // Defaults to true
+  signOutOnDisconnect?: boolean;
+  // Defaults to true
+  signOutOnAccountChange?: boolean;
+  // Defaults to true
+  signOutOnNetworkChange?: boolean;
+}
 
 export const siweConfig = createSIWEConfig({
   createMessage: ({ nonce, address, chainId }: SIWECreateMessageArgs) =>
     new SiweMessage({
-      version: '1',
+      version: "1",
       domain: window.location.host,
       uri: window.location.origin,
       address,
       chainId,
       nonce,
       // Human-readable ASCII assertion that the user will sign, and it must not contain `\n`.
-      statement: 'Sign in With Ethereum.'
+      statement: "Sign in With Ethereum.",
     }).prepareMessage(),
   getNonce: async () => {
-    const nonce = await getCsrfToken()
+    const nonce = await getCsrfToken();
     if (!nonce) {
-      throw new Error('Failed to get nonce!')
+      throw new Error("Failed to get nonce!");
     }
 
-    return nonce
+    return nonce;
   },
   getSession: async () => {
-    const session = await getSession()
+    const session = await getSession();
     if (!session) {
-      throw new Error('Failed to get session!')
+      throw new Error("Failed to get session!");
     }
 
-    const { address, chainId } = session as unknown as SIWESession
+    const { address, chainId } = session as unknown as SIWESession;
 
-    return { address, chainId }
+    return { address, chainId };
   },
   verifyMessage: async ({ message, signature }: SIWEVerifyMessageArgs) => {
     try {
-      const success = await signIn('credentials', {
+      const success = await signIn("credentials", {
         message,
         redirect: false,
         signature,
-        callbackUrl: '/protected'
-      })
+        callbackUrl: "/protected",
+      });
 
-      return Boolean(success?.ok)
+      return Boolean(success?.ok);
     } catch (error) {
-      return false
+      return false;
     }
   },
   signOut: async () => {
     try {
       await signOut({
-        redirect: false
-      })
+        redirect: false,
+      });
 
-      return true
+      return true;
     } catch (error) {
-      return false
+      return false;
     }
-  }
-})
+  },
+});
