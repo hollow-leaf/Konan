@@ -36,11 +36,16 @@ jobs:
           cache: pnpm
       
       - name: Install dependencies
-        run: pnpm install
-      
+        run: pnpm install 
+steps:
+      - name: Set WalletConnect Project ID
+        with: 
+          NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}
+        env:
+          NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}  
       - name: Build my App
         run: pnpm run build
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:

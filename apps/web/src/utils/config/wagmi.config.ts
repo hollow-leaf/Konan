@@ -5,7 +5,7 @@ import { mainnet, sepolia, goerli, optimism } from "wagmi/chains";
 
 // Get projectId at https://cloud.walletconnect.com
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
-
+console.log(projectId)
 if (!projectId) throw new Error("Project ID is not defined");
 
 const metadata = {
