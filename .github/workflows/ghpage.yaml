@@ -36,15 +36,12 @@ jobs:
           cache: pnpm
       
       - name: Install dependencies
-        run: pnpm install 
-        
-      - name: Set env
-        env: 
-          NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}
-        run: echo "${{secrets.NEXT_PUBLIC_PROJECT_ID}}"
+        run: pnpm install   
 
       - name: Build my App
-        run: pnpm run build
+        env: 
+          NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}
+        run: echo "${{secrets.NEXT_PUBLIC_PROJECT_ID}}" && pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
