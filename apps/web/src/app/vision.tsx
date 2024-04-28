@@ -23,9 +23,7 @@ export function Vision() {
               variant="body1"
               className="max-w-[900px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
             >
-              As a member of XueDAO, you'll have access to a wide range of
-              resources and benefits designed to help you succeed in the world
-              of Web3.
+              Hello Celestia!
             </Typography>
           </Box>
         </Box>
