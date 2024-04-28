@@ -1,15 +1,13 @@
-// components
-import { Navbar, Footer } from "@/components";
+import { Navbar, Footer } from "@/components"
+import { Hero, Vision } from "@/app"
 
-// sections
-import Hero from "./hero";
-
-export default function Campaign() {
+export default function Profile() {
   return (
     <>
       <Navbar />
       <Hero />
+      <Vision />
       <Footer />
     </>
-  );
+  )
 }

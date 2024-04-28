@@ -2,27 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
-
-svg {
-	font-family: "Russo One", sans-serif;
-	width: 100%; height: 100%;
-}
-svg text {
-	animation: stroke 4s infinite alternate;
-	stroke-width: 2;
-	stroke: #7B2BF9;
-	font-size: 100px;
-}
-@keyframes stroke {
-	0%   {
-		fill: rgba(122,101,204,0); stroke: rgba(123,43,249,1);
-		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
-	}
-	70%  {fill: rgba(122,101,204,0); stroke: rgba(123,43,249,1); }
-	80%  {fill: rgba(122,101,204,0); stroke: rgba(123,43,249,1); stroke-width: 3; }
-	100% {
-		fill: rgba(122,101,204,1); stroke: rgba(123,43,249,0);
-		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
-	}
-}
+.wrapper {
+    box-sizing: border-box;
+    padding: 50px;
+    margin: 0;
+  }
+  
+  .items {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(131.83deg, #FFFAFA 0%,     #FFF7F7 99.21%);
+    width: 300px;
+    text-align: center;
+    height: 300px;
+    border-radius: 16px;
+    position: relative;
+  }
+  
+  .item:not(:last-child) {
+    margin-right: 100px;
+  }
+  .item::before {
+    position: absolute;
+    content: "";
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    background-image: linear-gradient(312.25deg, #FFC4BC 0%,     rgba(255, 255, 255, 0) 66.19%);
+    z-index: -1;
+    border-radius: 18px;
+  }
+  
+  .inner {
+    background-color: #FFFAF4;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+    box-shadow: 0 40px 80px #FBE4E0;
+    border-radius: 14px;
+  }
+  
+  .name {
+    font-size: 48px;
+    margin: 0;
+  }

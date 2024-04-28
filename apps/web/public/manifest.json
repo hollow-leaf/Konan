@@ -1,12 +1,30 @@
 {
     "id": "2",
-    "name": "Konan PWA app",
-    "short_name": "Konan PWA App",
+    "name": "XueDAO-web",
+    "short_name": "XueDAO",
     "icons": [
         {
-            "src": "/favicon.png",
+            "src": "/konan_logo.webp",
             "sizes": "144x144",
             "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/konan-hero.webp",
+            "sizes": "144x144",
+            "type": "image/webp",
+            "purpose": "any"
+        },
+        {
+            "src": "/konan-hero.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/konan-nav-logo.webp",
+            "sizes": "144x144",
+            "type": "image/webp",
             "purpose": "any"
         }
     ],

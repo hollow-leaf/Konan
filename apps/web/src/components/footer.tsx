@@ -1,38 +1,76 @@
-import React from "react";
-import { Typography } from "@material-tailwind/react";
+import React from "react"
 
-const CURRENT_YEAR = new Date().getFullYear();
+import Image from "next/image"
+import Link from "next/link"
+import {
+  Instagram as InstagramIcon,
+  Telegram as TelegramIcon,
+  X as XIcon,
+  Facebook as FacebookIcon,
+  LinkedIn as LinkedInIcon,
+} from "@mui/icons-material"
+import { IconButton, Typography, Box } from "@mui/material"
 
 export function Footer() {
   return (
-    <footer className="container mx-auto">
-      <div className="flex flex-wrap items-end justify-center gap-y-4 gap-x-8 border-t border-blue-gray-50 py-6 md:justify-between">
-        <div className="text-center md:text-start">
-          <Typography className="font-normal !text-blue-700 flex" placeholder="" >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
-            </svg>
-            <a href="https://github.com/hollow-leaf/Konan">Following our Github here !</a>
-          </Typography>
-        </div>
-        <Typography
-          color="gray"
-          className="text-center font-normal !text-gray-700"
-          placeholder=""
+    <Box className="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t bg-black px-4 py-6 sm:flex-row md:px-6">
+      <Typography variant="body1" className="text-gray-400">
+        © 2024 XueDAO foundation. All rights reserved.
+      </Typography>
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <IconButton
+          className="bg-gray-500 hover:text-slate-300"
+          component="a"
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          &copy; {CURRENT_YEAR} Made with{" "}
-          <a href="https://www.material-tailwind.com" target="_blank">
-            Material Tailwind
-          </a>{" "}
-          by{" "}
-          <a href="https://www.creative-tim.com" target="_blank">
-            Jake Kuo
-          </a>
-          .
+          <InstagramIcon />
+        </IconButton>
+        <IconButton
+          className="bg-gray-500 hover:text-slate-300"
+          component="a"
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <XIcon />
+        </IconButton>
+        <IconButton
+          className="bg-gray-500 hover:text-slate-300"
+          component="a"
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TelegramIcon />
+        </IconButton>
+        <IconButton
+          className="bg-gray-500 hover:text-slate-300"
+          component="a"
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FacebookIcon />
+        </IconButton>
+        <IconButton
+          className="bg-gray-500 hover:text-slate-300"
+          component="a"
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedInIcon />
+        </IconButton>
+      </Box>
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Typography variant="body2" className="text-gray-400 opacity-50 hover:text-slate-300">
+          <Link href="/">Privacy Policy</Link>
         </Typography>
-      </div>
-    </footer>
-  );
+      </Box>
+    </Box>
+  )
 }
 
-export default Footer;
+export default Footer

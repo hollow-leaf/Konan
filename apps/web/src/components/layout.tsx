@@ -1,25 +1,24 @@
-"use client";
+"use client"
+import React from "react"
 
-import React from "react";
-import { ThemeProvider } from "@material-tailwind/react";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider } from 'wagmi'
-import { config } from '../wagmi.config'
+import { red } from "@mui/material/colors"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
 
-const queryClient = new QueryClient()
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+})
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <div>
-            {children}
-          </div>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+  <ThemeProvider theme={theme}>
+    <div>{children}</div>
+  </ThemeProvider>
   )
 }
 
-export default Layout;
+export default Layout

@@ -1,45 +1,54 @@
-import "./globals.css";
-import type { Metadata, Viewport } from "next";
-import { Roboto } from "next/font/google";
-import { Layout } from "@/components";
+import React from "react"
+
+import type { Metadata, Viewport } from "next"
+import { Roboto } from "next/font/google"
+import { Layout } from "@/components"
+import "./globals.css"
+
+import { headers } from 'next/headers'
+
+import { cookieToInitialState } from 'wagmi'
+
+import { config } from '@/utils/config/wagmi.config'
+import Web3ModalProvider from '@/utils'
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700", "900"],
   display: "swap",
-});
+})
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
-  title: "NextJS Tailwind Template",
-  description:
-    "Download this nextjs app, that is created by Jake Kuo.",
-};
+  title: "Konan",
+  description: "Konan website for web3 hackathon",
+  icons: {
+    icon: "/konan_logo.webp",
+  },
+}
+
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
-};
+  themeColor: "#3367D6",
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  const initialState = cookieToInitialState(config, headers().get('cookie'))
   return (
     <html lang="en">
       <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/konan_logo.webp" type="image/webp" />
       </head>
       <body className={roboto.className}>
+      <Web3ModalProvider initialState={initialState}>
         <Layout>
           {children}
         </Layout>
+      </Web3ModalProvider>
       </body>
     </html>
-  );
+  )
 }
