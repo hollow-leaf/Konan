@@ -85,7 +85,7 @@ export function Navbar() {
       position="sticky"
       color="transparent"
       elevation={0}
-      className="bg-black"
+      className="bg-sky-500/10"
     >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

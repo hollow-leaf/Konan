@@ -7,7 +7,7 @@ export function Vision() {
   return (
     <Box
       id="vision"
-      className="w-full bg-black bg-cover bg-center py-12 md:py-24 lg:py-32"
+      className="w-full bg-cover bg-center py-12 md:py-24 lg:py-32"
       component="section"
     >
       <Box className="container mx-auto px-4 md:px-6">

@@ -2,14 +2,8 @@ import React from "react";
 
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
-import { Layout } from "@/components";
 import "./globals.css";
 
-import { headers } from "next/headers";
-
-import { cookieToInitialState } from "wagmi";
-
-import { config } from "@/utils/config/wagmi.config";
 import Web3ModalProvider from "@/utils";
 
 const roboto = Roboto({
