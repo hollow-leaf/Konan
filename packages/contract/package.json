@@ -7,8 +7,7 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "hardhat compile",
-    "deploy:token": "hardhat deploy:token",
-    "deploy:nftFactory": "hardhat deploy:nftFactory",
+    "deploy:blackStone": "hardhat deploy:BlackStone",
     "verify": "hardhat verify"
   },
   "keywords": [],
@@ -28,7 +27,8 @@
     "typescript": "^4.5.3"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.1",
+    "@chainlink/contracts": "^1.1.0",
+    "@openzeppelin/contracts": "^4.9.0",
     "@prb/math": "^4.0.2",
     "erc6551": "^0.3.1"
   }
