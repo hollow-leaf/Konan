@@ -21,9 +21,10 @@ createWeb3Modal({
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   enableOnramp: true, // Optional - false as default
   themeVariables: {
-    "--w3m-accent": "#7e22ce",
+    "--w3m-accent": "#6BE4FF",
+    "--w3m-color-mix": "#FFABD8",
     "--w3m-color-mix-strength": 40,
-    "--w3m-z-index": 2,
+    "--w3m-z-index": 5,
   },
 });
 

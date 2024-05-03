@@ -32,27 +32,15 @@ import { ConnectButton } from "@/components";
 
 const NAV_MENU: NavbarItemType[] = [
   {
-    name: "Learn",
-    icon: <WebIcon />,
-    href: "/",
-    target: "",
-  },
-  {
-    name: "Docs",
+    name: "Profile",
     icon: <AccountCircleIcon />,
-    href: "/",
+    href: "/nft-mint",
     target: "_blank",
   },
   {
     name: "GitHub",
     icon: <CodeIcon />,
     href: "https://github.com/hollow-leaf/Konan",
-    target: "_blank",
-  },
-  {
-    name: "Community",
-    icon: <BookIcon />,
-    href: "/",
     target: "_blank",
   },
 ];
@@ -113,7 +101,7 @@ export function Navbar() {
               <Button
                 color="secondary"
                 startIcon={Icon}
-                className="rounded-full hover:bg-slate-900 font-bold"
+                className="rounded-full hover:shadow font-bold"
               >
                 {name}
               </Button>
@@ -122,20 +110,6 @@ export function Navbar() {
         </Box>
         <div style={{ flexGrow: 1 }} />
         <Box sx={{ display: { xs: "none", lg: "flex" } }}>
-          {/* <Link
-            href="/"
-            target="_blank"
-            passHref
-          >
-            <Button
-              color="secondary"
-              variant="outlined"
-              endIcon={<AccountCircleIcon />}
-              className="rounded-full font-bold hover:bg-slate-900"
-            >
-              Connect Wallet
-            </Button>
-          </Link> */}
           <ConnectButton />
         </Box>
         <IconButton
@@ -150,7 +124,7 @@ export function Navbar() {
         </IconButton>
       </Toolbar>
       <Collapse
-        className="bg-black flex"
+        className="bg-sky-500/10 flex"
         in={open}
         timeout="auto"
         unmountOnExit
@@ -161,7 +135,7 @@ export function Navbar() {
               <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
                 <Button
                   onClick={handleOpen}
-                  className="text-purple-700 rounded-full hover:bg-slate-900 font-bold"
+                  className="text-purple-700 rounded-full hover:shadow  font-bold"
                 >
                   <ListItemIcon className="text-purple-700">
                     {Icon}
@@ -172,20 +146,6 @@ export function Navbar() {
             </Link>
           ))}
           <ListItem>
-            {/* <Link
-              href="/"
-              target="_blank"
-              passHref
-            >
-              <Button
-                className="text-purple-700 rounded-full hover:bg-slate-900 font-bold"
-                color="secondary"
-                variant="outlined"
-                endIcon={<AccountCircleIcon />}
-              >
-                Connect Wallet
-              </Button>
-            </Link> */}
             <ConnectButton />
           </ListItem>
         </List>
