@@ -19,7 +19,7 @@ export function Footer() {
       </Typography>
       <Box sx={{ display: "flex", gap: 2 }}>
         <IconButton
-          className="bg-gray-500 hover:text-slate-300"
+          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -28,7 +28,7 @@ export function Footer() {
           <InstagramIcon />
         </IconButton>
         <IconButton
-          className="bg-gray-500 hover:text-slate-300"
+          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -37,7 +37,7 @@ export function Footer() {
           <XIcon />
         </IconButton>
         <IconButton
-          className="bg-gray-500 hover:text-slate-300"
+          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -46,7 +46,7 @@ export function Footer() {
           <TelegramIcon />
         </IconButton>
         <IconButton
-          className="bg-gray-500 hover:text-slate-300"
+          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -55,7 +55,7 @@ export function Footer() {
           <FacebookIcon />
         </IconButton>
         <IconButton
-          className="bg-gray-500 hover:text-slate-300"
+          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"

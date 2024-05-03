@@ -26,6 +26,7 @@ const chainIds = {
   "scroll-sepolia-testnet": 534351,
   "op-sepolia": 11155420,
   "linea-goerli": 59140,
+  "arb-sepolia": 421614,
 };
 
 // Ensure that we have all the environment variables we need.
@@ -63,6 +64,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     case "linea-goerli":
       jsonRpcUrl = "https://rpc.goerli.linea.build";
       break;
+    case "arb-sepolia":
+      jsonRpcUrl = "https://sepolia-rollup.arbitrum.io/rpc";
+      break;
     default:
       jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`;
   }
@@ -94,6 +98,7 @@ const config: HardhatUserConfig = {
     "scroll-sepolia-testnet": getChainConfig("scroll-sepolia-testnet"),
     "op-sepolia": getChainConfig("op-sepolia"),
     "linea-goerli": getChainConfig("linea-goerli"),
+    "arb-sepolia": getChainConfig("arb-sepolia"),
   },
   paths: {
     artifacts: "./artifacts",
@@ -102,11 +107,7 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    compilers: [
-      {
-        version: "0.8.20",
-      },
-    ],
+    version: "0.8.20",
     settings: {
       metadata: {
         // Not including the metadata hash
@@ -118,9 +119,6 @@ const config: HardhatUserConfig = {
       optimizer: {
         enabled: true,
         runs: 200,
-        details: {
-          yulDetails: false,
-        },
       },
     },
   },
@@ -136,6 +134,7 @@ const config: HardhatUserConfig = {
       "scroll-sepolia-testnet": process.env.SCROLL_API_KEY || "",
       "op-sepolia": process.env.OPSEPOLIA_API_KEY || "",
       "linea-goerli": process.env.LINEA_API_KEY || "",
+      "arb-sepolia": process.env.ARB_API_KEY || "",
     },
     // https://docs.bscscan.com/v/opbnb-testnet/
     customChains: [
@@ -193,6 +192,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://api-testnet.lineascan.build/api",
           browserURL: "https://goerli.lineascan.build",
+        },
+      },
+      {
+        network: "arb-sepolia",
+        chainId: chainIds["arb-sepolia"],
+        urls: {
+          apiURL: "https://api-sepolia.arbiscan.io/api",
+          browserURL: "https://sepolia.arbiscan.io/",
         },
       },
     ],

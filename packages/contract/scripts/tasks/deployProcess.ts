@@ -23,7 +23,7 @@ task("deploy:contract", "Deploy contract")
     await deployContract.deployed();
   });
 
-task("deploy:token", "Deploy Token")
+task("deploy:BlackStone", "Deploy BlackStone")
   .addFlag("verify", "Validate contract after deploy")
   .setAction(async ({ verify }, hre) => {
     await hre.run("compile");
@@ -32,92 +32,75 @@ task("deploy:token", "Deploy Token")
     const balance = await hre.ethers.provider.getBalance(signer.address);
     console.log(`balance: ${balance}`);
     console.log(`maxPriorityFeePerGas: ${feeData.maxPriorityFeePerGas}`);
-    const pawPointFactory = await hre.ethers.getContractFactory(
-      "contracts/Pawpoint.sol:Pawpoint",
+    const blackStoneFactory = await hre.ethers.getContractFactory(
+      "contracts/BlackStone.sol:BlackStone",
     );
-    const amount = BigInt("1000000000000000000000000000000");
-    const pawPointDeployContract: any = await pawPointFactory
+    const subscriptionId = "109523572682734995777696152140023272905430657577104923148923374208498494773437";
+    const maxBatchSize_ = 10;
+    const drawtypes_ = [3,4,5,6];
+    const collectionSize_ = 500;
+    const amountForAuctionAndDev_ = 200;
+    const amountForDevs_ = 100;
+    const blackStoneDeployContract: any = await blackStoneFactory
       .connect(signer)
-      .deploy(amount, {
-        maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-        maxFeePerGas: feeData.maxFeePerGas,
-        gasLimit: 3000000, // optional: for some weird infra network
-      });
-    console.log(`Pawpoint.sol deployed to ${pawPointDeployContract.address}`);
-
-    const address = {
-      main: pawPointDeployContract.address,
-    };
-    const addressData = JSON.stringify(address);
-    writeFileSync(
-      `scripts/address/${hre.network.name}/`,
-      "Pawpoint.json",
-      addressData,
-    );
-
-    await pawPointDeployContract.deployed();
-
-    if (verify) {
-      console.log("verifying contract...");
-      await pawPointDeployContract.deployTransaction.wait(3);
-      try {
-        await hre.run("verify:verify", {
-          address: pawPointDeployContract.address,
-          constructorArguments: ["1000000000000000000000000000000"],
-          contract: "contracts/Pawpoint.sol:Pawpoint",
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  });
-
-task("deploy:nftFactory", "Deploy NFT factory")
-  .addFlag("verify", "Validate contract after deploy")
-  .setAction(async ({ verify }, hre) => {
-    await hre.run("compile");
-    const [signer]: any = await hre.ethers.getSigners();
-    const feeData = await hre.ethers.provider.getFeeData();
-    const Pawpoint = readFileSync(
-      `scripts/address/${hre.network.name}/`,
-      "Pawpoint.json",
-    );
-    const pawpointAddress = JSON.parse(Pawpoint).main;
-    const nftContractFactory = await hre.ethers.getContractFactory(
-      "contracts/CouponFactory.sol:CouponFactory",
-    );
-    const nftDeployContract: any = await nftContractFactory
-      .connect(signer)
-      .deploy(pawpointAddress, {
+      .deploy(
+        subscriptionId,
+        maxBatchSize_,
+        drawtypes_,
+        collectionSize_,
+        amountForAuctionAndDev_,
+        amountForDevs_, 
+        {
         maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
         maxFeePerGas: feeData.maxFeePerGas,
         gasLimit: 6000000, // optional: for some weird infra network
       });
-    console.log(`CouponFactory.sol deployed to ${nftDeployContract.address}`);
-
+    console.log(`BlackStone.sol deployed to ${blackStoneDeployContract.address}`);
+    const setProperty0 = await blackStoneDeployContract.setDrawProperty(0, [20,30,50])
+    console.log(`setProperty0: ${setProperty0.hash}`);
+    const setProperty1 = await blackStoneDeployContract.setDrawProperty(1, [10,20,30,40])
+    console.log(`setProperty1: ${setProperty1.hash}`);
+    const setProperty2 = await blackStoneDeployContract.setDrawProperty(2, [5,20,30,40,5])
+    console.log(`setProperty2: ${setProperty2.hash}`);
+    const setProperty3 = await blackStoneDeployContract.setDrawProperty(3, [10,5,10,30,40,5])
+    console.log(`setProperty3: ${setProperty3.hash}`);
+    const setBaseURI = await blackStoneDeployContract.setBaseURI("https://blackstone.com/")
+    console.log(`setBaseURI: ${setBaseURI.hash}`);
+    const devMint = await blackStoneDeployContract.devMint(10)
+    console.log(`devMint: ${devMint.hash}`);
+    const token1 = await blackStoneDeployContract.tokenURI(0)
+    console.log(`tokenURI: ${token1}`);
     const address = {
-      main: nftDeployContract.address,
+      main: blackStoneDeployContract.address,
     };
     const addressData = JSON.stringify(address);
     writeFileSync(
       `scripts/address/${hre.network.name}/`,
-      "CouponFactory.json",
+      "BlackStone.json",
       addressData,
     );
 
-    await nftDeployContract.deployed();
+    await blackStoneDeployContract.deployed();
 
     if (verify) {
-      console.log("verifying nft contract...");
-      await nftDeployContract.deployTransaction.wait(3);
+      console.log("verifying contract...");
+      await blackStoneDeployContract.deployTransaction.wait(3);
       try {
         await hre.run("verify:verify", {
-          address: nftDeployContract.address,
-          constructorArguments: [pawpointAddress],
-          contract: "contracts/CouponFactory.sol:CouponFactory",
+          address: blackStoneDeployContract.address,
+          constructorArguments: [
+            "109523572682734995777696152140023272905430657577104923148923374208498494773437",
+            10,
+            [3,4,5,6],
+            500,
+            200,
+            100,
+          ],
+          contract: "contracts/BlackStone.sol:BlackStone",
         });
       } catch (e) {
         console.log(e);
       }
     }
   });
+
