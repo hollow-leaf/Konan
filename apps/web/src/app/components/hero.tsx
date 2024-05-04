@@ -10,7 +10,9 @@ export function Hero() {
     <Box className="relative w-full overflow-hidden bg-cover bg-center py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b">
       <div className="max-w-full flex flex-col items-center py-20">
         <p className="text-8xl font-extrabold	">COLLECTION</p>
-        <p className="text-8xl font-extrabold	bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">BY ARTIST</p>
+        <p className="text-8xl font-extrabold	bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
+          BY ARTIST
+        </p>
       </div>
       <Box className="flex flex-col items-center justify-center gap-x-8 px-12 sm:flex-row sm:px-12 md:px-24 lg:px-32 xl:px-48">
         <Box className="flex flex-wrap items-center justify-center">
