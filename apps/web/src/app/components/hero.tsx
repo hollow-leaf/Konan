@@ -1,16 +1,13 @@
 import React from "react";
-
-import Image from "next/image";
-import Link from "next/link";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { CollectionCard } from "./collectionCard";
 
 export function Hero() {
   return (
-    <Box className="relative w-full overflow-hidden bg-cover bg-center py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b">
+    <Box className="relative w-full overflow-hidden py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48">
       <div className="max-w-full flex flex-col items-center py-20">
-        <p className="text-8xl font-extrabold	">COLLECTION</p>
-        <p className="text-8xl font-extrabold	bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
+        <p className="text-4xl xl:text-8xl font-extrabold	text-white">COLLECTION</p>
+        <p className="text-4xl xl:text-8xl font-extrabold	bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
           BY ARTIST
         </p>
       </div>

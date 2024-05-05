@@ -22,7 +22,6 @@ createWeb3Modal({
   enableOnramp: true, // Optional - false as default
   themeVariables: {
     "--w3m-accent": "#6BE4FF",
-    "--w3m-color-mix": "#FFABD8",
     "--w3m-color-mix-strength": 40,
     "--w3m-z-index": 5,
   },

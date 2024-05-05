@@ -1,12 +1,12 @@
 import { Navbar, Footer } from "@/components";
-import { Hero, Vision } from "@/app/components";
+import { Hero, Business } from "@/app/components";
 
 export default function Profile() {
   return (
-    <div className="bg-white">
+    <div className="bg-[url('/bg.png')] bg-cover bg-center">
       <Navbar />
       <Hero />
-      <Vision />
+      <Business />
       <Footer />
     </div>
   );

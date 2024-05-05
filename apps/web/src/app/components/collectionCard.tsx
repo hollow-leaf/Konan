@@ -2,7 +2,7 @@ import React from "react";
 
 export function CollectionCard() {
   return (
-    <div className="bg-white border border-gray-200 rounded-3xl shadow p-4 m-4">
+    <div className="bg-white rounded-3xl shadow p-4 m-4 bg-opacity-30">
       <div className="flex mb-2">
         <div className="m-2">
           <img
