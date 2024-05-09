@@ -1,12 +1,14 @@
-import { Navbar, Footer } from "@/components";
-import { Hero, Business } from "@/app/components";
+import { Navbar, Footer, Hero, Team } from "@/components";
+import { Business, Mint_nft  } from "@/app/components";
 
 export default function Profile() {
   return (
-    <div className="bg-[url('/bg.png')] bg-cover bg-center">
+    <div className="bg-white bg-cover bg-center">
       <Navbar />
       <Hero />
+      <Mint_nft />
       <Business />
+      <Team />
       <Footer />
     </div>
   );

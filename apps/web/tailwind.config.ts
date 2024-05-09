@@ -17,6 +17,9 @@ const config: Config = {
         xuedao_pink: "#FFFAF4",
         joinus_btn: "#FA9382",
       },
+      spacing: {
+        '120': '28rem',
+      }
     },
   },
   plugins: [],

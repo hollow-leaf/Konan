@@ -1,4 +1,4 @@
 
-export * from "./hero";
 export * from "./Business";
-export * from "./collectionCard"
+export * from "./Mint_nft";
+export * from "../../components/Team";

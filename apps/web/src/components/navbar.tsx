@@ -35,7 +35,7 @@ const NAV_MENU: NavbarItemType[] = [
     name: "Profile",
     icon: <AccountCircleIcon />,
     href: "/nft-mint",
-    target: "_blank",
+    target: "",
   },
   {
     name: "GitHub",
@@ -74,7 +74,7 @@ export function Navbar() {
       color="transparent"
       elevation={0}
     >
-      <Box className="mx-5 rounded-3xl mt-5 shadow-lg bg-slate-200 bg-opacity-30 text-black">
+      <Box className="shadow-lg bg-white text-black">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="">
           <Link href="/">
@@ -92,7 +92,7 @@ export function Navbar() {
             <Link key={name} href={href} target={target} passHref>
               <Button
                 startIcon={Icon}
-                className="rounded-full hover:shadow font-bold"
+                className="rounded-full hover:shadow font-bold text-black"
               >
                 {name}
               </Button>
@@ -114,7 +114,7 @@ export function Navbar() {
         </IconButton>
       </Toolbar>
       <Collapse
-        className="bg-sky-500/10 flex"
+        className="bg-white flex"
         in={open}
         timeout="auto"
         unmountOnExit
@@ -125,9 +125,9 @@ export function Navbar() {
               <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
                 <Button
                   onClick={handleOpen}
-                  className="text-white rounded-full hover:shadow  font-bold"
+                  className="rounded-full hover:shadow font-bold text-black"
                 >
-                  <ListItemIcon className="text-white">
+                  <ListItemIcon className="text-black">
                     {Icon}
                   </ListItemIcon>
                   <ListItemText primary={name} />
