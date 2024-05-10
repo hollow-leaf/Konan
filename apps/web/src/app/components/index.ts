@@ -1,4 +1,4 @@
 
 export * from "./Business";
 export * from "./Mint_nft";
-export * from "../../components/Team";
+export * from "./Team";

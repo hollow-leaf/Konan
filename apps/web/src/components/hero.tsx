@@ -7,12 +7,10 @@ export function Hero() {
   
   const handleCardClick = () => {
     setShowBox(true);
-    console.log(showBox)
   };
 
   const handleCloseNFTCard = () => {
     setShowBox(false);
-    console.log(showBox)
   };
 
   return (
@@ -32,8 +30,10 @@ export function Hero() {
       </Box>
       {showBox && (
           <Box className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <Box className="absolute inset-0 flex items-center justify-center">
             <NFTCard openBTN={showBox} onClose={handleCloseNFTCard}/>
           </Box>
+        </Box>
         )}
     </Box>
     

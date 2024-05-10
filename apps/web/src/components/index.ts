@@ -7,4 +7,3 @@ export * from "./connectButton";
 export * from "./hero";
 export * from "./collectionCard";
 export * from "./nftCard";
-export * from "./Team";

@@ -57,25 +57,25 @@ export function NFTCard(props: NFTCardProps) {
                     <Box className="basis-1/2 xl:basis-2/6 w-full h-full flex flex-col xl:flex-row gap-3 mt-32 xl:mt-0">
                         <Box className="basis-1/4 bg-gray-500 w-full h-full rounded-3xl flex flex-col text-center justify-center py-32 xl:py-0">
                             <Typography className="text-4xl font-bold text-white">0/500</Typography>
-                            <Typography className="font-bold text-white">
+                            <Typography className="font-bold text-white px-10">
                                 Fair Launch and distribution-all boars have the same cost of 0.04 ETH
                             </Typography>
                         </Box>
                         <Box className="basis-1/4 bg-gray-500 w-full h-full rounded-3xl flex flex-col text-center justify-center py-32 xl:py-0">
                             <Typography className="text-4xl font-bold text-white">0/500</Typography>
-                            <Typography className="font-bold text-white">
+                            <Typography className="font-bold text-white px-10">
                                 Fair Launch and distribution-all boars have the same cost of 0.04 ETH
                             </Typography>
                         </Box>
                         <Box className="basis-1/4 bg-gray-500 w-full h-full rounded-3xl flex flex-col text-center justify-center py-32 xl:py-0">
                             <Typography className="text-4xl font-bold text-white">0/500</Typography>
-                            <Typography className="font-bold text-white">
+                            <Typography className="font-bold text-white px-10">
                                 Fair Launch and distribution-all boars have the same cost of 0.04 ETH
                             </Typography>
                         </Box>
                         <Box className="basis-1/4 bg-gray-500 w-full h-full rounded-3xl flex flex-col text-center justify-center py-32 xl:py-0">
                             <Typography className="text-4xl font-bold text-white">0/500</Typography>
-                            <Typography className="font-bold text-white">
+                            <Typography className="font-bold text-white px-10">
                                 Fair Launch and distribution-all boars have the same cost of 0.04 ETH
                             </Typography>
                         </Box>
