@@ -1,21 +1,20 @@
 interface dnftSale {
-    dnft: dnft
-    price: number
-    amount: number
+  dnft: dnft;
+  price: number;
+  amount: number;
 }
 
 interface dnft {
-    id: string
-    address: string
-    metadata: dnftMetadata //DA
+  id: string;
+  address: string;
+  metadata: dnftMetadata; //DA
 }
 
 interface dnftMetadata {
-    uri: string //IPFS
-    
+  uri: string; //IPFS
 }
 
 interface cat {
-    glasses: string
-    background: string
+  glasses: string;
+  background: string;
 }

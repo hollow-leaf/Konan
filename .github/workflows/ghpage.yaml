@@ -40,8 +40,9 @@ jobs:
 
       - name: Build my App
         env: 
-          NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}
-        run: echo "${{secrets.NEXT_PUBLIC_PROJECT_ID}}" && pnpm run build
+          NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: ${{secrets.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}}
+          NEXT_PUBLIC_ALCHEMY_ID: ${{secrets.NEXT_PUBLIC_ALCHEMY_ID}}
+        run: echo "${{secrets.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}}", "${{secrets.NEXT_PUBLIC_ALCHEMY_ID}}" && pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

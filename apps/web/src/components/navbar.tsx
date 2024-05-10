@@ -34,7 +34,7 @@ const NAV_MENU: NavbarItemType[] = [
   {
     name: "Profile",
     icon: <AccountCircleIcon />,
-    href: "/nft-mint",
+    href: "/profile",
     target: "",
   },
   {
@@ -69,77 +69,76 @@ export function Navbar() {
   }, []);
 
   return (
-    <AppBar
-      position="sticky"
-      color="transparent"
-      elevation={0}
-    >
+    <AppBar position="sticky" color="transparent" elevation={0}>
       <Box className="shadow-lg bg-white text-black">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="">
-          <Link href="/">
-            <Typography className="font-bold text-xl">Konan</Typography>
-          </Link>
-        </Typography>
-        <Box
-          sx={{
-            display: { xs: "none", lg: "flex" },
-            gap: 2,
-            alignItems: "center",
-          }}
-        >
-          {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
-            <Link key={name} href={href} target={target} passHref>
-              <Button
-                startIcon={Icon}
-                className="rounded-full hover:shadow font-bold text-black"
-              >
-                {name}
-              </Button>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            className=""
+          >
+            <Link href="/">
+              <Typography className="font-bold text-xl">Konan</Typography>
             </Link>
-          ))}
-        </Box>
-        <div style={{ flexGrow: 1 }} />
-        <Box sx={{ display: { xs: "none", lg: "flex" } }}>
-          <ConnectButton />
-        </Box>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleOpen}
-          sx={{ display: { xs: "block", lg: "none" } }}
-        >
-          {open ? <CloseIcon /> : <MenuIcon />}
-        </IconButton>
-      </Toolbar>
-      <Collapse
-        className="bg-white flex"
-        in={open}
-        timeout="auto"
-        unmountOnExit
-      >
-        <List component="nav" className="flex flex-col items-start">
-          {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
-            <Link key={name} href={href} target={target} passHref>
-              <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
+          </Typography>
+          <Box
+            sx={{
+              display: { xs: "none", lg: "flex" },
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
+            {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+              <Link key={name} href={href} target={target} passHref>
                 <Button
-                  onClick={handleOpen}
+                  startIcon={Icon}
                   className="rounded-full hover:shadow font-bold text-black"
                 >
-                  <ListItemIcon className="text-black">
-                    {Icon}
-                  </ListItemIcon>
-                  <ListItemText primary={name} />
+                  {name}
                 </Button>
-              </Box>
-            </Link>
-          ))}
-          <ListItem>
+              </Link>
+            ))}
+          </Box>
+          <div style={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", lg: "flex" } }}>
             <ConnectButton />
-          </ListItem>
-        </List>
-      </Collapse>
+          </Box>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleOpen}
+            sx={{ display: { xs: "block", lg: "none" } }}
+          >
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+        </Toolbar>
+        <Collapse
+          className="bg-white flex"
+          in={open}
+          timeout="auto"
+          unmountOnExit
+        >
+          <List component="nav" className="flex flex-col items-start">
+            {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+              <Link key={name} href={href} target={target} passHref>
+                <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
+                  <Button
+                    onClick={handleOpen}
+                    className="rounded-full hover:shadow font-bold text-black"
+                  >
+                    <ListItemIcon className="text-black">{Icon}</ListItemIcon>
+                    <ListItemText primary={name} />
+                  </Button>
+                </Box>
+              </Link>
+            ))}
+            <ListItem>
+              <ConnectButton />
+            </ListItem>
+          </List>
+        </Collapse>
       </Box>
     </AppBar>
   );

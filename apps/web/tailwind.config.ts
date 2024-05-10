@@ -18,8 +18,8 @@ const config: Config = {
         joinus_btn: "#FA9382",
       },
       spacing: {
-        '120': '28rem',
-      }
+        "120": "28rem",
+      },
     },
   },
   plugins: [],

@@ -60,9 +60,7 @@ export function Footer() {
         </IconButton>
       </Box>
       <Box sx={{ display: "flex", gap: 2 }}>
-        <Typography
-          variant="body2"
-        >
+        <Typography variant="body2">
           <Link href="/">Privacy Policy</Link>
         </Typography>
       </Box>

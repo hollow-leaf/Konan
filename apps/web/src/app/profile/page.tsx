@@ -1,5 +1,5 @@
 import { Navbar, Footer } from "@/components";
-import { Hero } from "@/app/nft-mint/components";
+import { Hero } from "@/components/profile";
 
 export default function Profile() {
   return (

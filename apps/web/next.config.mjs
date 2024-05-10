@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 import withPWAInit from "@ducanh2912/next-pwa";
 const withPWA = withPWAInit({
-  dest: 'public',
+  dest: "public",
   cacheOnFrontEndNav: true,
   aggressiveFrontEndNavCaching: true,
   reloadOnOnline: true,
@@ -12,17 +12,17 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig = {
-  output: 'export',
+  output: "export",
   reactStrictMode: true,
   swcMinify: true,
-  webpack: config => {
+  webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false };
-    config.externals.push('pino-pretty', 'lokijs', 'encoding');
+    config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
   },
   images: {
     unoptimized: true,
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
   },
 };
 

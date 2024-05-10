@@ -12,4 +12,4 @@ export type ImageType = {
   name: string;
   title: string;
   linkedin: string;
-}
+};

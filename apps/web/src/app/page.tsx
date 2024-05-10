@@ -1,5 +1,5 @@
-import { Navbar, Footer, Hero } from "@/components";
-import { Business, Mint_nft, Team  } from "@/app/components";
+import { Navbar, Footer, Hero, Mint_nft } from "@/components";
+import { Business, Team } from "@/app/components";
 
 export default function Profile() {
   return (

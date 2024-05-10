@@ -1,60 +1,60 @@
 {
-    "id": "2",
-    "name": "XueDAO-web",
-    "short_name": "XueDAO",
-    "icons": [
-        {
-            "src": "/konan_logo.webp",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/konan-hero.webp",
-            "sizes": "144x144",
-            "type": "image/webp",
-            "purpose": "any"
-        },
-        {
-            "src": "/konan-hero.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/konan-nav-logo.webp",
-            "sizes": "144x144",
-            "type": "image/webp",
-            "purpose": "any"
-        },
-        {
-            "src": "/Albert.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/Jake.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/Solo.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/Sophia.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        }
-    ],
-    "theme_color": "#3367D6",
-    "background_color": "#3367D6",
-    "start_url": "/",
-    "display": "standalone",
-    "orientation": "portrait"
+  "id": "2",
+  "name": "XueDAO-web",
+  "short_name": "XueDAO",
+  "icons": [
+    {
+      "src": "/konan_logo.webp",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/konan-hero.webp",
+      "sizes": "144x144",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/konan-hero.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/konan-nav-logo.webp",
+      "sizes": "144x144",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/Albert.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Jake.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Solo.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Sophia.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#3367D6",
+  "background_color": "#3367D6",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
 }
