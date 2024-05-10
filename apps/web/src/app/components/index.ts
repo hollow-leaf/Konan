@@ -1,4 +1,3 @@
-"use client";
-
-export * from "./hero";
-export * from "./vision";
+export * from "./Business";
+export * from "./Team";
+export * from "./Loading";

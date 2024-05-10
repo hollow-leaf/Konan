@@ -1,12 +1,14 @@
-import { Navbar, Footer } from "@/components";
-import { Hero, Vision } from "@/app/components";
+import { Navbar, Footer, Hero, Mint_nft } from "@/components";
+import { Business, Team } from "@/app/components";
 
 export default function Profile() {
   return (
-    <div className="bg-white">
+    <div className="bg-white bg-cover bg-center">
       <Navbar />
       <Hero />
-      <Vision />
+      <Mint_nft />
+      <Business />
+      <Team />
       <Footer />
     </div>
   );

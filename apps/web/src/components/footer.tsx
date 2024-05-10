@@ -13,13 +13,12 @@ import { IconButton, Typography, Box } from "@mui/material";
 
 export function Footer() {
   return (
-    <Box className="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6">
-      <Typography variant="body1" className="text-gray-400">
-        © 2024 XueDAO foundation. All rights reserved.
+    <Box className="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6 text-black">
+      <Typography variant="body1" className="text-black">
+        © 2024 Konan foundation. All rights reserved.
       </Typography>
       <Box sx={{ display: "flex", gap: 2 }}>
         <IconButton
-          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -28,7 +27,6 @@ export function Footer() {
           <InstagramIcon />
         </IconButton>
         <IconButton
-          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -37,7 +35,6 @@ export function Footer() {
           <XIcon />
         </IconButton>
         <IconButton
-          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -46,7 +43,6 @@ export function Footer() {
           <TelegramIcon />
         </IconButton>
         <IconButton
-          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -55,7 +51,6 @@ export function Footer() {
           <FacebookIcon />
         </IconButton>
         <IconButton
-          className="text-slate-300"
           component="a"
           href="/"
           target="_blank"
@@ -65,10 +60,7 @@ export function Footer() {
         </IconButton>
       </Box>
       <Box sx={{ display: "flex", gap: 2 }}>
-        <Typography
-          variant="body2"
-          className="text-gray-400 opacity-50 hover:text-slate-300"
-        >
+        <Typography variant="body2">
           <Link href="/">Privacy Policy</Link>
         </Typography>
       </Box>

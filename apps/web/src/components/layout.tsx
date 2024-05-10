@@ -1,22 +1,23 @@
 "use client";
 import React from "react";
-
-import { red } from "@mui/material/colors";
+import { Web3Provider } from "@/config/wagmi.config";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: red[500],
+      main: "#000000",
     },
   },
 });
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider theme={theme}>
-      <div>{children}</div>
-    </ThemeProvider>
+    <Web3Provider>
+      <ThemeProvider theme={theme}>
+        <div>{children}</div>
+      </ThemeProvider>
+    </Web3Provider>
   );
 }
 

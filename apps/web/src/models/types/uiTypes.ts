@@ -6,3 +6,10 @@ export type NavbarItemType = {
   href: string;
   target: string;
 };
+
+export type ImageType = {
+  label: string;
+  name: string;
+  title: string;
+  linkedin: string;
+};

@@ -3,8 +3,7 @@ import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-
-import Web3ModalProvider from "@/utils";
+import { Layout } from "@/components";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -36,7 +35,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/konan_logo.webp" type="image/webp" />
       </head>
       <body className={roboto.className}>
-        <Web3ModalProvider>{children}</Web3ModalProvider>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

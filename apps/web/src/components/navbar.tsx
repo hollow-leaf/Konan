@@ -34,8 +34,8 @@ const NAV_MENU: NavbarItemType[] = [
   {
     name: "Profile",
     icon: <AccountCircleIcon />,
-    href: "/nft-mint",
-    target: "_blank",
+    href: "/profile",
+    target: "",
   },
   {
     name: "GitHub",
@@ -69,87 +69,77 @@ export function Navbar() {
   }, []);
 
   return (
-    <AppBar
-      position="sticky"
-      color="transparent"
-      elevation={0}
-      className="bg-sky-500/10"
-    >
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link href="/">
-            <Image
-              src="/konan-nav-logo.webp"
-              alt="Xue DAO logo"
-              width={100}
-              height={70}
-              style={{ width: "100px", height: "auto" }}
-              priority
-            />
-          </Link>
-        </Typography>
-        <Box
-          sx={{
-            display: { xs: "none", lg: "flex" },
-            gap: 2,
-            alignItems: "center",
-            pt: 2,
-          }}
-        >
-          {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
-            <Link key={name} href={href} target={target} passHref>
-              <Button
-                color="secondary"
-                startIcon={Icon}
-                className="rounded-full hover:shadow font-bold"
-              >
-                {name}
-              </Button>
+    <AppBar position="sticky" color="transparent" elevation={0}>
+      <Box className="shadow-lg bg-white text-black">
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            className=""
+          >
+            <Link href="/">
+              <Typography className="font-bold text-xl">Konan</Typography>
             </Link>
-          ))}
-        </Box>
-        <div style={{ flexGrow: 1 }} />
-        <Box sx={{ display: { xs: "none", lg: "flex" } }}>
-          <ConnectButton />
-        </Box>
-        <IconButton
-          className="text-purple-700"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleOpen}
-          sx={{ display: { xs: "block", lg: "none" } }}
-        >
-          {open ? <CloseIcon /> : <MenuIcon />}
-        </IconButton>
-      </Toolbar>
-      <Collapse
-        className="bg-sky-500/10 flex"
-        in={open}
-        timeout="auto"
-        unmountOnExit
-      >
-        <List component="nav" className="flex flex-col items-start">
-          {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
-            <Link key={name} href={href} target={target} passHref>
-              <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
+          </Typography>
+          <Box
+            sx={{
+              display: { xs: "none", lg: "flex" },
+              gap: 2,
+              alignItems: "center",
+            }}
+          >
+            {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+              <Link key={name} href={href} target={target} passHref>
                 <Button
-                  onClick={handleOpen}
-                  className="text-purple-700 rounded-full hover:shadow  font-bold"
+                  startIcon={Icon}
+                  className="rounded-full hover:shadow font-bold text-black"
                 >
-                  <ListItemIcon className="text-purple-700">
-                    {Icon}
-                  </ListItemIcon>
-                  <ListItemText primary={name} />
+                  {name}
                 </Button>
-              </Box>
-            </Link>
-          ))}
-          <ListItem>
+              </Link>
+            ))}
+          </Box>
+          <div style={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", lg: "flex" } }}>
             <ConnectButton />
-          </ListItem>
-        </List>
-      </Collapse>
+          </Box>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleOpen}
+            sx={{ display: { xs: "block", lg: "none" } }}
+          >
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+        </Toolbar>
+        <Collapse
+          className="bg-white flex"
+          in={open}
+          timeout="auto"
+          unmountOnExit
+        >
+          <List component="nav" className="flex flex-col items-start">
+            {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
+              <Link key={name} href={href} target={target} passHref>
+                <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
+                  <Button
+                    onClick={handleOpen}
+                    className="rounded-full hover:shadow font-bold text-black"
+                  >
+                    <ListItemIcon className="text-black">{Icon}</ListItemIcon>
+                    <ListItemText primary={name} />
+                  </Button>
+                </Box>
+              </Link>
+            ))}
+            <ListItem>
+              <ConnectButton />
+            </ListItem>
+          </List>
+        </Collapse>
+      </Box>
     </AppBar>
   );
 }
