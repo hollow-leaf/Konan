@@ -1,20 +1,20 @@
-interface dnftSale {
+export interface dnftSale {
   dnft: dnft;
   price: number;
   amount: number;
 }
 
-interface dnft {
+export interface dnft {
   id: string;
   address: string;
   metadata: dnftMetadata; //DA
 }
 
-interface dnftMetadata {
+export interface dnftMetadata {
   uri: string; //IPFS
 }
 
-interface cat {
+export interface cat {
   glasses: string;
   background: string;
 }

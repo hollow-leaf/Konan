@@ -5,7 +5,7 @@ import { LinkedIn } from "@mui/icons-material";
 import Link from "next/link";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { ImageType } from "@/models/types/uiTypes";
+import { ImageType } from "@/types/uiTypes";
 import { Box, Typography } from "@mui/material";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
