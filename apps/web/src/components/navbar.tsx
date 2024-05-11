@@ -27,7 +27,7 @@ import {
   Box,
 } from "@mui/material";
 
-import { NavbarItemType } from "@/models/types/uiTypes";
+import { NavbarItemType } from "@/types/uiTypes";
 import { ConnectButton } from "@/components";
 
 const NAV_MENU: NavbarItemType[] = [
@@ -100,7 +100,7 @@ export function Navbar() {
               </Link>
             ))}
           </Box>
-          <div style={{ flexGrow: 1 }} />
+          <Box style={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", lg: "flex" } }}>
             <ConnectButton />
           </Box>

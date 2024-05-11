@@ -14,9 +14,7 @@ const theme = createTheme({
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <Web3Provider>
-      <ThemeProvider theme={theme}>
-        <div>{children}</div>
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </Web3Provider>
   );
 }

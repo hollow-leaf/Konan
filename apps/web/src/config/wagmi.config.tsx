@@ -1,3 +1,4 @@
+"use client";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import { mainnet, arbitrumSepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,7 +7,7 @@ import { ReactNode } from "react";
 
 const walletConnectProjectId =
   process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "";
-const config = createConfig(
+export const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
     chains: [arbitrumSepolia],
@@ -36,7 +37,7 @@ export const Web3Provider = ({ children }: { children: ReactNode }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider>{children}</ConnectKitProvider>
+        <ConnectKitProvider debugMode>{children}</ConnectKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
