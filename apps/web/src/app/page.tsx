@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 export default function Profile() {
   return (
-    <Box className="bg-white bg-cover bg-center">
+    <Box className="bg-gradient-to-br from-purple-200 via-purple-100 to-purple-50">
       <Navbar />
       <Hero />
       <Mint_nft />

@@ -37,7 +37,7 @@ export function NestedList() {
   };
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List className="max-w-360 w-72 bg-white">
       <ListItemButton onClick={() => handleClick(0)}>
         <ListItemText primary="Backround" />
         {openIndex === 0 ? <ExpandLess /> : <ExpandMore />}
