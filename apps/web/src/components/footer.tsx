@@ -59,11 +59,6 @@ export function Footer() {
           <LinkedInIcon />
         </IconButton>
       </Box>
-      <Box sx={{ display: "flex", gap: 2 }}>
-        <Typography variant="body2">
-          <Link href="/">Privacy Policy</Link>
-        </Typography>
-      </Box>
     </Box>
   );
 }

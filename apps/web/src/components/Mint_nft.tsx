@@ -26,11 +26,11 @@ export function Mint_nft() {
         <Suspense fallback={<Loading />}>
           <Box className="flex w-full overflow-hidden py-6 sm:py-12 md:py-24 lg:py-32 xl:py-12 justify-center items-center mx-auto">
             <Box className="flex flex-col w-full mx-24 gap-10">
-              <Box className="bg-white w-full flex flex-col xl:flex-row py-24 gap-5 xl:px-24 justify-center items-center">
-                <Box className="xl:w-1/2 bg-white  flex justify-center">
+              <Box className="w-full flex flex-col xl:flex-row py-24 gap-5 xl:px-24 justify-center items-center">
+                <Box className="xl:w-1/2 flex justify-center">
                   <Box className="mx-10 flex min-w-80 min-h-80 xl:min-w-120 xl:min-h-28 rounded-lg bg-center bg-cover bg-[url('/konan-hero.webp')] object-contain py-64" />
                 </Box>
-                <Box className="xl:w-1/2 bg-white xl:py-32 gap-5 flex flex-col px-10 xl:px-0">
+                <Box className="xl:w-1/2 xl:py-32 gap-5 flex flex-col px-10 xl:px-0">
                   <Typography className="text-4xl text-black font-bold">
                     NFT Mint
                   </Typography>
