@@ -23,6 +23,7 @@ export function Hero() {
           BY ARTIST
         </Typography>
       </Box>
+      {/* 這裡請寫好IPFS資訊在@/content/ipfs中，再導入map */}
       <Box className="flex flex-col items-center justify-center gap-x-8 px-12 sm:flex-row sm:px-12 md:px-24 lg:px-32 xl:px-48">
         <Box className="flex flex-wrap items-center justify-center">
           <Button onClick={handleCardClick} className="rounded-3xl">

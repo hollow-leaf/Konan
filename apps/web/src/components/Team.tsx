@@ -2,7 +2,7 @@
 import { Box, IconButton, Link, Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
-import { images } from "@/content/TeamData"
+import { images } from "@/content/TeamData";
 import { LinkedIn } from "@mui/icons-material";
 
 export function Team() {
@@ -17,9 +17,15 @@ export function Team() {
         </Typography>
       </Box>
       <Box className="flex flex-col xl:flex-row mx-auto items-center justify-center align-middle">
-        {images.map((image, index)=>(
+        {images.map((image, index) => (
           <Box className="px-5" key={index}>
-            <Image src={image.name} alt={image.label} width={300} height={400} className="rounded-2xl"/>
+            <Image
+              src={image.name}
+              alt={image.label}
+              width={300}
+              height={400}
+              className="rounded-2xl"
+            />
             <Typography className="text-2xl font-bold text-black">
               {image.title}
             </Typography>

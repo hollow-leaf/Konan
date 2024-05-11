@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
-import { bg_color, hat, glasses } from "@/content/SideBarObject";
+import { bg_color, body, accessory } from "@/content/SideBarObject";
 
 export function NestedList() {
   const [openIndex, setOpenIndex] = useState<number | unknown>(null);
@@ -60,10 +60,10 @@ export function NestedList() {
       ))}
 
       <ListItemButton onClick={() => handleClick(1)}>
-        <ListItemText primary="Hat" />
+        <ListItemText primary="Body" />
         {openIndex === 1 ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      {hat.map((item, index) => (
+      {body.map((item, index) => (
         <Collapse key={index} in={openIndex === 1} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItemButton
@@ -72,7 +72,7 @@ export function NestedList() {
             >
               <Checkbox checked={isChecked[item.id]} />
               <ListItemText
-                primary={`${item.hat}`}
+                primary={`${item.body}`}
                 secondary={`${item.amount}`}
               />
             </ListItemButton>
@@ -81,10 +81,10 @@ export function NestedList() {
       ))}
 
       <ListItemButton onClick={() => handleClick(2)}>
-        <ListItemText primary="Glasses" />
+        <ListItemText primary="Accessory" />
         {openIndex === 2 ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      {glasses.map((item, index) => (
+      {accessory.map((item, index) => (
         <Collapse key={index} in={openIndex === 2} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItemButton
@@ -93,7 +93,7 @@ export function NestedList() {
             >
               <Checkbox checked={isChecked[item.id]} />
               <ListItemText
-                primary={`${item.glasses}`}
+                primary={`${item.accessory}`}
                 secondary={`${item.amount}`}
               />
             </ListItemButton>

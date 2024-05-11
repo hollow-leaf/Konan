@@ -14,7 +14,7 @@ export function Hero() {
 
   const { address, isConnected, chain } = useAccount();
 
-  const isAddress: `0x${string}` | undefined = address
+  const isAddress: `0x${string}` | undefined = address;
 
   // data?.value可以取的Address的balance
   const { data, isError, isLoading } = useBalance({
@@ -31,7 +31,7 @@ export function Hero() {
   const toggleText = () => {
     setIsExpanded(!isExpanded);
   };
-  
+
   return (
     <>
       {isClient ? (
@@ -47,12 +47,14 @@ export function Hero() {
                 </Typography>
               </Box>
             </Box>
-            
+
             <Box className="flex flex-col p-10 gap-3">
               <Box className="text-gray-600">
                 {isExpanded ? (
                   <>
-                    <Typography className="text-clip w-full xl:w-1/3">{ProfileText}</Typography>
+                    <Typography className="text-clip w-full xl:w-1/3">
+                      {ProfileText}
+                    </Typography>
                     <button
                       onClick={toggleText}
                       className="font-bold hover:text-gray-500"
@@ -62,7 +64,9 @@ export function Hero() {
                   </>
                 ) : (
                   <>
-                    <Typography className="truncate w-1/3">{ProfileText}</Typography>
+                    <Typography className="truncate w-1/3">
+                      {ProfileText}
+                    </Typography>
                     <button
                       onClick={toggleText}
                       className="font-bold hover:text-gray-500"
@@ -76,7 +80,7 @@ export function Hero() {
                 <Typography>Created May 2024</Typography>
                 <Typography>Chain {chain?.name}</Typography>
               </Box>
-              {/* 這裡放Profile NFT，NestedList是屬性sideBar，NftTable放Profile的IPFS NFT  */}  
+              {/* 這裡放Profile NFT，NestedList是屬性sideBar，NftTable放Profile的IPFS NFT  */}
               <Box className="flex flex-col md:flex-row w-full h-full py-10 gap-10">
                 <NestedList />
                 <NftTable />
