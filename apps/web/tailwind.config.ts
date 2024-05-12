@@ -19,6 +19,8 @@ const config: Config = {
       },
       spacing: {
         "120": "28rem",
+        "128": "32rem",
+        "132": "36rem",
       },
     },
   },

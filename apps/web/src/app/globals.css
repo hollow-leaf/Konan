@@ -80,3 +80,21 @@
     transform: rotate(1turn);
   }
 }
+
+#BG {
+  background-color: red;
+  animation-name: NFTbackground;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes NFTbackground {
+  0%   {background-color: red;}
+  14%  {background-color: orange;}
+  28%  {background-color: yellow;}
+  42%  {background-color: green;}
+  57%  {background-color: blue;}
+  71%  {background-color: indigo;}
+  85%  {background-color: violet;}
+  100% {background-color: red;}
+}

@@ -3,14 +3,14 @@ export type BgColorType = {
   color: string;
   amount: number;
 };
-export type HatType = {
+export type BodyType = {
   id: number;
-  hat: string;
+  body: string;
   amount: number;
 };
 
-export type GlassesType = {
+export type AccessoryType = {
   id: number;
-  glasses: string;
+  accessory: string;
   amount: number;
 };

@@ -12,15 +12,17 @@ function Media(props: MediaProps) {
 
   return (
     <Grid container>
-      {(loading ? Array.from(new Array(nftIPFS.length)) : nftIPFS).map((item, index) => (
-        <Box key={index} sx={{ width: 420, marginRight: 0.5, my: 5 }}>
-          {item  ? (
-            <NFTCard index={index}/>
-          ) : (
-            <Skeleton variant="rectangular" width={345} height={360} />
-          )}
-        </Box>
-      ))}
+      {(loading ? Array.from(new Array(nftIPFS.length)) : nftIPFS).map(
+        (item, index) => (
+          <Box key={index} sx={{ width: 420, marginRight: 0.5, my: 5 }}>
+            {item ? (
+              <NFTCard index={index} />
+            ) : (
+              <Skeleton variant="rectangular" width={345} height={360} />
+            )}
+          </Box>
+        ),
+      )}
     </Grid>
   );
 }
@@ -28,7 +30,7 @@ function Media(props: MediaProps) {
 export function NftTable() {
   return (
     <Box sx={{ overflow: "hidden" }}>
-      <Media loading />
+      {/* <Media loading /> */}
       <Media />
     </Box>
   );

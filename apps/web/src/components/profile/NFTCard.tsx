@@ -1,14 +1,13 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
-import { nftIPFS } from '@/content/ipfs/ipfs-nft';
-import Link from 'next/link';
+import React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea, CardActions } from "@mui/material";
+import { nftIPFS } from "@/content/ipfs/ipfs-nft";
+import Link from "next/link";
 
 export function NFTCard(props: { index: number }) {
-
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -29,7 +28,11 @@ export function NFTCard(props: { index: number }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link color="primary" href={nftIPFS[props.index].src} className='hover:text-shadow-lg'>
+        <Link
+          color="primary"
+          href={nftIPFS[props.index].src}
+          className="hover:text-shadow-lg"
+        >
           Show details
         </Link>
       </CardActions>

@@ -1,22 +1,21 @@
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
-import Image from "next/image";
 
-export function CollectionCard(onClick: any) {
+export function CollectionCard() {
   return (
     <Box className="bg-white rounded-3xl shadow p-4 m-4 bg-opacity-30 text-black">
       <Box className="flex mb-2">
         <Box className="m-2">
-          <Image
-            src={"/konan-hero.webp"}
-            alt="xuedao logo"
-            width={80}
-            height={80}
-            className="rounded-full"
-          />
+          <Box className="rounded-full overflow-hidden">
+            <Avatar
+              src={"/konan-hero.webp"}
+              alt="Konan logo"
+              sx={{ width: 56, height: 56 }}
+            />
+          </Box>
         </Box>
         <Box className="m-2 content-center">
-          <Typography className="text-xl font-bold	">#Polly Doll</Typography>
+          <Typography className="text-xl font-bold">#Polly Doll</Typography>
           <Typography>@By TheSalvare</Typography>
         </Box>
       </Box>
