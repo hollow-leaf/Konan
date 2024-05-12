@@ -9,5 +9,5 @@ export * from "./collectionCard";
 export * from "./nftCard";
 export * from "./Mint_nft";
 export * from "./Business";
-export * from "./loading";
+export * from "./Loading";
 export * from "./Team";
