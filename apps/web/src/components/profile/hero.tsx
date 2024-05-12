@@ -5,6 +5,10 @@ import { useAccount, useBalance } from "wagmi";
 import { Loading } from "@/components";
 import { useRouter } from "next/navigation";
 import { NFTCard } from "./NFTCard";
+import { getNftosByAddress } from "@/services/api";
+import { nftOwn } from "@/types/types";
+import { useQuery } from "@tanstack/react-query";
+import { time } from "console";
 
 
 export function Hero() {
@@ -12,6 +16,7 @@ export function Hero() {
 
   const [isOpen, sstIsOpen] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const [nfts, setNfts] = useState<nftOwn[]>([])
 
   const { address, isConnected, chain } = useAccount();
 
@@ -21,9 +26,24 @@ export function Hero() {
     }
   }, [isConnected]);
 
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["getNftosByAddress"],
+    queryFn: async () => {
+      const res = await getNftosByAddress("0x957A49308CAA2bfFEc32F1cA1c75Ce751BBBaAee")
+      if(res) {
+        console.log(res)
+        setNfts(res)
+      }
+    }
+  })
+
   function closeModal() {
     sstIsOpen(false)
   }
+
+  const nftElements:any = nfts.map((nft, index) => {
+    return <NFTCard nft={nft}/>
+  })
 
   return (
     <>
@@ -34,49 +54,12 @@ export function Hero() {
         </div>
       </div>
       <div className="px-32 py-6">
-       
+        <p>ID</p>
+        <p>{address}</p>
       </div>
-      <div className="flex px-20 ">
-      <NFTCard index={1}/>
-      <NFTCard index={1}/>
-      <NFTCard index={1}/>
-      <NFTCard index={1}/>
-      <NFTCard index={1}/>
-      <NFTCard index={1}/>
+      <div className="flex px-48 flex-wrap place-content-start">
+        {nftElements.length > 0 ? (nftElements) : (<><p>fuck uuuu</p></>)}
       </div>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-            <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-            >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </Transition.Child>
-        
-            <div className="fixed inset-0 overflow-y-auto">
-                <div className="flex min-h-full items-center justify-center p-4 text-center">
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0 scale-95"
-                        enterTo="opacity-100 scale-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100 scale-100"
-                        leaveTo="opacity-0 scale-95"
-                    >
-                        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                    
-                        </Dialog.Panel>
-                    </Transition.Child>
-                </div>
-            </div>
-        </Dialog>
-    </Transition>
     </>
   )
 }

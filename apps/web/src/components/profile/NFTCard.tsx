@@ -7,9 +7,10 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { nftIPFS } from "@/content/ipfs/ipfs-nft";
 import { Dialog, Transition } from '@headlessui/react'
+import { nftOwn } from "@/types/types";
 
 
-export function NFTCard(props: { index: number }) {
+export function NFTCard(props: { nft: nftOwn }) {
   const [isOpen, sstIsOpen] = useState<boolean>(false)
   
   function closeModal() {
@@ -17,26 +18,11 @@ export function NFTCard(props: { index: number }) {
   }
 
   return (
-    <div className="m-4 rounded-lg w-3/12	" onClick={()=>{sstIsOpen(true)}}>
-      <Card sx={{ maxWidth: 400, maxHeight: 600 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="80"
-            image={nftIPFS[props.index].src}
-            alt={nftIPFS[props.index].name}
-            className=""
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {nftIPFS[props.index].name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Solo is gold System Architect.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <div className="p-5 rounded-xl w-2/12	shadow-lg m-2" onClick={()=>{sstIsOpen(true)}}>
+      <div className="rounded-xl cursor-pointer">
+        <img className="ms-auto max-h-xs rounded-xl" src={nftIPFS[1].src} alt="image description" />
+        <p className="p-2">{nftIPFS[1].name}</p>
+      </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
