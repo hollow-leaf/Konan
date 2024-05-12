@@ -1,101 +1,82 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import React, { Fragment, useEffect, useState } from "react";
+import { Dialog, Transition } from '@headlessui/react'
 import { useAccount, useBalance } from "wagmi";
 import { Loading } from "@/components";
-import { Avatar } from "connectkit";
-import { NestedList } from "./SideList";
-import { NftTable } from "./NftTable";
-import { ProfileText } from "@/content/ProfileData";
+import { useRouter } from "next/navigation";
+import { NFTCard } from "./NFTCard";
+
 
 export function Hero() {
-  const [isClient, setIsClient] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const router = useRouter()
+
+  const [isOpen, sstIsOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const { address, isConnected, chain } = useAccount();
 
-  const isAddress: `0x${string}` | undefined = address;
-
-  // data?.value可以取的Address的balance
-  const { data, isError, isLoading } = useBalance({
-    address: isAddress,
-  });
   useEffect(() => {
-    if (isConnected === true) {
-      setIsClient(true);
-    } else {
-      setIsClient(false);
+    if (!isConnected) {
+      router.push('/')
     }
   }, [isConnected]);
 
-  const toggleText = () => {
-    setIsExpanded(!isExpanded);
-  };
+  function closeModal() {
+    sstIsOpen(false)
+  }
 
   return (
     <>
-      {isClient ? (
-        <Box className="flex w-full justify-center items-center mx-auto">
-          <Box className="flex flex-col w-full">
-            {/* user profile data */}
-            <Box className="bg-gradient-to-b from-blue-500 to-bg-white flex flex-row py-10 px-10 ">
-              <Box className="flex flex-col gap-3">
-                {/* 這裡放合約頭像、名稱 */}
-                <Avatar address={address} size={50} radius={50} />
-                <Typography className="text-black font-bold text-xs sm:text-sm md:text-lg xl:text-xl flex-wrap">
-                  Konan Dynamic NFTs
-                </Typography>
-              </Box>
-            </Box>
-
-            <Box className="flex flex-col p-10 gap-3">
-              <Box className="text-gray-600">
-                {isExpanded ? (
-                  <>
-                    <Typography className="text-clip w-full xl:w-1/3">
-                      {ProfileText}
-                    </Typography>
-                    <button
-                      onClick={toggleText}
-                      className="font-bold hover:text-gray-500"
+      <div className="w-full min-h-72 bg-center bg-cover bg-[url('/background1.png')]"></div>
+      <div className="flex items-end relative w-full h-10 bg-black px-32 bg-white">
+        <div className="bg-orange-200 rounded-full p-1">
+          <img className="rounded-full w-40 h-40" src="/main1.png" alt="image description" />
+        </div>
+      </div>
+      <div className="px-32 py-6">
+       
+      </div>
+      <div className="flex px-20 ">
+      <NFTCard index={1}/>
+      <NFTCard index={1}/>
+      <NFTCard index={1}/>
+      <NFTCard index={1}/>
+      <NFTCard index={1}/>
+      <NFTCard index={1}/>
+      </div>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+        
+            <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95"
                     >
-                      See Less
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Typography className="truncate w-1/3">
-                      {ProfileText}
-                    </Typography>
-                    <button
-                      onClick={toggleText}
-                      className="font-bold hover:text-gray-500"
-                    >
-                      See More
-                    </button>
-                  </>
-                )}
-              </Box>
-              <Box className="flex flex-col sm:flex-row gap-5 text-gray-600 items-center justify-start">
-                <Typography>Created May 2024</Typography>
-                <Typography>Chain {chain?.name}</Typography>
-              </Box>
-              {/* 這裡放Profile NFT，NestedList是屬性sideBar，NftTable放Profile的IPFS NFT  */}
-              <Box className="flex flex-col md:flex-row w-full h-full py-10 gap-10">
-                <NestedList />
-                <NftTable />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      ) : (
-        <Box className="flex flex-col justify-center items-center h-screen">
-          <Loading />
-          <Typography variant="h5">
-            Connect wallet to show your collection
-          </Typography>
-        </Box>
-      )}
+                        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                    
+                        </Dialog.Panel>
+                    </Transition.Child>
+                </div>
+            </div>
+        </Dialog>
+    </Transition>
     </>
-  );
+  )
 }

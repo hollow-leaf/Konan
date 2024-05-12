@@ -1,3 +1,4 @@
+"use client";
 import { Navbar, Footer, Hero, Mint_nft, Business, Team } from "@/components";
 import { Box } from "@mui/material";
 
