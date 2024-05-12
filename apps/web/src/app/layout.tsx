@@ -1,5 +1,4 @@
 import React from "react";
-
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -31,8 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      
       <head>
         <link rel="shortcut icon" href="/konan_logo.webp" type="image/webp" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet"></link>
       </head>
       <body className={roboto.className}>
         <Layout>{children}</Layout>
