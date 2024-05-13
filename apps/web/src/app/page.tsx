@@ -3,13 +3,12 @@ import { Box } from "@mui/material";
 
 export default function Profile() {
   return (
-    <Box className="bg-white">
+    <div className="" style={{"backgroundColor": "#f2c1f2", "backgroundImage": "linear-gradient(160deg, #f2c1f2 0%, #ffffff 16%, #ffffff 99%)"}}>
       <Navbar />
       <Hero />
-      {/* <Mint_nft /> */}
       <Business />
       <Team />
       <Footer />
-    </Box>
+    </div>
   );
 }
