@@ -18,7 +18,7 @@ export function NFTCard(props: { nft: nftOwn }) {
   }
 
   return (
-    <div className="p-5 rounded-xl w-2/12	shadow-lg m-2" onClick={()=>{sstIsOpen(true)}}>
+    <div className="p-5 rounded-xl w-2/12	shadow-lg m-2 min-w-[250px]" onClick={()=>{sstIsOpen(true)}}>
       <div className="rounded-xl cursor-pointer">
         <img className="ms-auto max-h-xs rounded-xl" src={nftIPFS[1].src} alt="image description" />
         <p className="p-2">{nftIPFS[1].name}</p>

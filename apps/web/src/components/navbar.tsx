@@ -67,8 +67,8 @@ export function Navbar() {
   }, []);
 
   return (
-    <AppBar position="sticky" color="transparent" elevation={0}>
-      <Box className="shadow-lg bg-white text-black">
+    <AppBar position="static" color="transparent" elevation={0}>
+      <Box className="px-48 bg-white/0 text-black">
         <Toolbar>
           <Typography
             variant="h6"
@@ -77,7 +77,7 @@ export function Navbar() {
             className=""
           >
             <Link href="/">
-              <Typography className="font-bold text-xl">Konan</Typography>
+              <Typography className="font-bold text-3xl">Konan</Typography>
             </Link>
           </Typography>
           <Box
@@ -91,7 +91,7 @@ export function Navbar() {
               <Link key={name} href={href} target={target} passHref>
                 <Button
                   startIcon={Icon}
-                  className="rounded-full hover:shadow font-bold text-black"
+                  className="text-xl rounded-full hover:shadow font-bold text-black"
                 >
                   {name}
                 </Button>
