@@ -3,7 +3,7 @@
 
 <img src="https://cloudflare-ipfs.com/ipfs/QmZzuPWuvRWyGxAkGcTcGhnNDdJ3evrKZDuWbb73PhWLH9/" width="50%" height="50%"></img>
 
-[![Frontend deploy](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yml/badge.svg?branch=main)](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yml)
+[![Frontend deploy](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yaml/badge.svg?branch=main)](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yaml)
 
 </div>
 
