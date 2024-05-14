@@ -88,7 +88,7 @@ export function Navbar() {
             }}
           >
             {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
-              <Link key={name} href={href} target={target} passHref>
+              <Link key={name} href={href} target={target} passHref className="transform transition-transform hover:scale-110">
                 <Button
                   startIcon={Icon}
                   className="text-xl rounded-full hover:shadow font-bold text-black"
@@ -122,13 +122,13 @@ export function Navbar() {
             {NAV_MENU.map(({ name, icon: Icon, href, target }) => (
               <Link key={name} href={href} target={target} passHref>
                 <Box sx={{ display: "block", textAlign: "left", pt: 1 }}>
-                  <Button
+                  <button
                     onClick={handleOpen}
-                    className="rounded-full hover:shadow font-bold text-black"
+                    className="rounded-full hover:shadow font-bold text-black transform transition-transform hover:scale-110"
                   >
                     <ListItemIcon className="text-black">{Icon}</ListItemIcon>
                     <ListItemText primary={name} />
-                  </Button>
+                  </button>
                 </Box>
               </Link>
             ))}
