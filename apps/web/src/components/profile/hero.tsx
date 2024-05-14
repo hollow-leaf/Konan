@@ -62,7 +62,7 @@ export function Hero() {
       </div>
       <div className="flex px-48 justify-center	">
         <div className="flex flex-wrap w-10/12">
-        {nftElements.length > 0 ? (nftElements) : (<><p>fuck uuuu</p></>)}
+        {nftElements.length > 0 ? (nftElements) : (<><p>Not Nft to list</p></>)}
         </div>
       </div>
     </>
