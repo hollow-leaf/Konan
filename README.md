@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Konan</h1>
 
-<img src="https://cloudflare-ipfs.com/ipfs/QmZzuPWuvRWyGxAkGcTcGhnNDdJ3evrKZDuWbb73PhWLH9/" width="50%" height="50%"></img>
+<img src="https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmYZ7D41kMBDVKKppGvaSvdsdbFWMDaJzJiXGmrXkNrweu" width="50%" height="50%"></img>
 
 [![Frontend deploy](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yaml/badge.svg?branch=main)](https://github.com/hollow-leaf/Konan/actions/workflows/ghpage.yaml)
 
@@ -12,65 +12,95 @@
 - Video： [Konan demo](https://youtu.be/aFThCDy1UNg?si=9SaA8jX0pGBX45nK)
 - Konan Contract：
   - Arbitrum Sepolia： [BlackStone](https://sepolia.arbiscan.io/address/0x585a1DDaB9116F483d367bCa6eb64797252051c8)
-  - ChainLink VRF：
-  - Celestia：
+  - Celestia：celestia1px5kx8h2jzrtynchjht5u2qefl39kec5vagkpd
 
 ### Abstract
 
-Konan is at the forefront of the digital revolution, providing developers with a groundbreaking platform to craft their unique Dynamic Non-Fungible Tokens (DNFTs). Our mission is to democratize the creation and validation of NFT metadata, empowering developers to unleash their creativity and revolutionize the digital asset landscape.
+Konan is an innovative GameFi game that elevates the concept of decentralized dynamic NFTs (dNFTs) to new heights. In this game, players can log in using OAuth or a Web3 wallet to randomly draw a unique NFT. Through a gacha-like mechanism, players gradually unlock equipment or backgrounds for their NFT characters, obtaining NFTs of varying values in the process!
 
 ### Introduction
 
-With Konan, developers can tap into a world of endless possibilities by creating DNFTs tailored to their specific needs and visions. Whether it's artwork, collectibles, virtual real estate, or any other digital asset, Konan provides the tools and infrastructure to bring your ideas to life in the form of DNFTs.
+#### Advantages of Celestia
+- Lower Transaction Fees: Celestia offers significantly lower transaction fees, making it more cost-effective for users.
+- Guaranteed Data Availability: Celestia ensures data availability within a specific timeframe, enhancing the reliability of your data.
+- Verifiable on Any Chain: Data stored on Celestia can be verified on any blockchain, ensuring cross-chain compatibility and transparency.
+- Transparent and Large-Scale Storage: Celestia allows users to know exactly what content is being stored, providing clarity and trust. Additionally, it supports the storage of relatively large files, accommodating a wider range of data needs.
 
-Celestia seamlessly integrates with our DNFT platform, allowing developers to effortlessly validate the metadata of their NFTs. By leveraging Celestia's advanced verification mechanisms, developers can ensure the authenticity and integrity of their DNFTs, providing peace of mind to both creators and collectors alike.
-
-Konan's integration with ChainLink streamlines the DNFT generation process, allowing developers to effortlessly incorporate external data into their digital assets.Konan ensures that DNFTs reflect the latest and most relevant information, enhancing their value and utility.
-
+#### Why Celestia?
+![Why](https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmQsKxQhiEEndT5nWkjS3DaVKVLSfh4fCi4h2T2vVNn3Cd/Celestia%20Hackathon.png)
+- NFT's metadata use Blobstream to depoly NFT's metadata on Layer2
+- Verify NFT's metadata by Celestia network
 <br/>
 
 ### Key Features
 
-- Streamlined DNFT Creation: Konan's intuitive interface and seamless ChainLink integration make DNFT creation effortless, allowing developers to focus on unleashing their creativity without worrying about technical complexities.
+- Unique NFT Drawing Mechanism: As soon as players enter the game, they can randomly draw an NFT character. Each character is unique, with different initial attributes and appearances.
 
-- Enhanced Authenticity: By incorporating real-time data feeds, Celestia ensures the authenticity and uniqueness of DNFTs, providing both creators and collectors with confidence in the integrity of their digital assets.
+- Gacha Unlock System: Each unlock offers the chance to obtain rare equipment or special backgrounds, enhancing the value and abilities of the character. The results are filled with surprises, providing endless fun and anticipation for every player.
 
-- User-Friendly Interface: Celestia's intuitive platform ensures that DNFT creation is accessible to all users, regardless of technical expertise.
+- Dynamic NFT Value: With each unlock, the value of the NFT fluctuates, reflecting market changes and player behavior. This makes each NFT dynamically valuable, serving as both a collectible and an investment.
 
+### Technology:
 
-### Our solution:
-
-- Chainlink VRF (Verifiable Random Function)：Generate Dynamic NFT
-- Celestia Data Avalibility：Verify ERC-721A token metadata avalibility using Celestia
-- Data Security：Ensures transparency and security with Celestia blockchain technology
-- UI/UX friendly：Easy integration with a simple interface for users to mint NFT
+- Celestia Blobstream：Ensures efficient and reliable data streaming, supporting large-scale data storage.
+- Succinct：Provides highly compressed data structures, improving storage and retrieval efficiency.
+- ChainLink VRF：Utilizes verifiable random functions to generate randomness, ensuring fairness and transparency in the gacha unlock process.
+- Arbitrum Network：Offers a fast and low-cost Layer 2 solution, enhancing the game's scalability and user experience.
 
 ### Methods
 
-- Use [Celestia](https://celestia.org/what-is-celestia/) to access nft metadata and verify MetaData URI
+- Use [Celestia](https://celestia.org/what-is-celestia/) to access nft metadata
 - Use [ChainkLink](https://chain.link/) VRF to draw nft accessory
 - Use [Arbitrum](https://arbitrum.io/) to deploy Smart Contract
-- Use [Solidity](https://soliditylang.org/) to develop smart contract
-- Use [IPFS](https://ipfs.tech/) to access nft photo and metadata
-- Use [Next.js](https://nextjs.org/) to build frontend web
-- Use [Cloudflare_serverless](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hono-site/) to build serverless
-- Use [Golang](https://go.dev/) to develop backend server
+
 
 ### Technical Architecture
 Konan Architecture
-![Konan Architecture](https://github.com/hollow-leaf/psyduck/blob/main/apps/extension_app/img/Psyduck_architeture.png?raw=true)
+![Konan Architecture](https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmQsKxQhiEEndT5nWkjS3DaVKVLSfh4fCi4h2T2vVNn3Cd/Technical01.png)
+![Konan Architecture](https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmQsKxQhiEEndT5nWkjS3DaVKVLSfh4fCi4h2T2vVNn3Cd/Technical02.png)
+![Konan Architecture](https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmQsKxQhiEEndT5nWkjS3DaVKVLSfh4fCi4h2T2vVNn3Cd/Technical03.png)
+![Konan Architecture](https://ivory-awake-falcon-554.mypinata.cloud/ipfs/QmQsKxQhiEEndT5nWkjS3DaVKVLSfh4fCi4h2T2vVNn3Cd/Technical04.gif)
 
 Konan workflow
 ```mermaid
-	sequenceDiagram
+		sequenceDiagram
 		actor User
 		participant Konan
-		participant Aribtrum smart contract
+		participant EVM Layer2 smart contract
 		participant ChainLink VRF
 		participant Celestia
+
+        EVM Layer2 smart contract ->> EVM Layer2 smart contract: Setup IPFS Base URI
+        EVM Layer2 smart contract ->> EVM Layer2 smart contract: Setup Draw Property
+        Konan->>Celestia: Depoly DNFT metadata
+        User->>Konan: Connect Wallet or Web2 Oauth Login
+        User->>Konan: Click Mint NFT button
+        
+        Konan->>EVM Layer2 smart contract: Mint NFT
+        EVM Layer2 smart contract-->>Konan: Return Origin NFT
+
+        User->>Konan: Click Mint background property button
+        Konan->>EVM Layer2 smart contract: Mint background property
+        EVM Layer2 smart contract->>ChainLink VRF: Draw by VRF
+        ChainLink VRF-->>EVM Layer2 smart contract: Return random number
+        EVM Layer2 smart contract-->>Konan: Return random background property
+
+        User->>Konan: Click Mint accessory property button
+        Konan->>EVM Layer2 smart contract: Mint accessory property
+        EVM Layer2 smart contract->>ChainLink VRF: Draw by VRF
+        ChainLink VRF-->>EVM Layer2 smart contract: Return random number
+        EVM Layer2 smart contract-->>Konan: Return random accessory property
+        Konan->>Konan: Get the Dynamic NFT
+        Konan->>Celestia: Write Dynamic NFT metadata
+        Celestia-->>Konan: Metadata is valid
+        Konan->>Konan: Successfully verify Dynamic NFT
+        Konan-->>User: Return Dynamic NFT is true
 			
 			
 ```
+### Future Prospects
+- Record Draw History: Every draw and result will be meticulously recorded, from the moment players draw equipment to each step of the equipment upgrade process. All data will be securely stored on the Celestia network.
+- Verifiable Fairness: Players can review and verify this data at any time, ensuring that the draw probabilities and results have not been tampered with. This leverages Celestia's decentralized nature, enhancing player trust in the game system.
 
 ### Building & Installation
 
