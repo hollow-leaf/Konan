@@ -28,6 +28,43 @@ app.get('/', async (c) => {
   return c.text("Hello Hono")
 })
 
+app.post('/daSubmitted', async (c) => {
+  const reqData = await c.req.json()
+
+  var namespace = reqData['namespace']
+  var height = reqData['height']
+  var id = reqData['id']
+  if( id == null) {
+    return c.json({res: "Data Error"})
+  }
+  //string
+  await c.env.psyduck.put(id+"-daSubmitted", namespace + ":" + height)
+  return c.json({res: "good"})
+})
+
+app.post('/nftURIById', async (c) => {
+  const reqData = await c.req.json()
+  var uri = reqData['URI']
+  var id = reqData['id']
+  if( id == null) {
+    return c.json({res: "Data Error"})
+  }
+  //string
+  await c.env.psyduck.put(id+"-nftURI", uri)
+  return c.json({res: "good"})
+})
+
+app.post('/getNftURIById', async (c) => {
+  const reqData = await c.req.json()
+  var id = reqData['id']
+  if( id == null) {
+    return c.json({res: "Data Error"})
+  }
+  //string
+  const res = await c.env.psyduck.get(id+"-nftURI")
+  return c.json({id: id, uri: res})
+})
+
 app.post('/nftOwnByAddress', async (c) => {
   const reqData = await c.req.json()
 

@@ -15,7 +15,7 @@ export const config = createConfig(
     transports: {
       // RPC URL for each chain
       [arbitrumSepolia.id]: http(
-        `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
+        `https://arbitrum-sepolia.infura.io/v3/${"3db317632844470fa86a5a3a8cb7724d"}`,
       ),
     },
 

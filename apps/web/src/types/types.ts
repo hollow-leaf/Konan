@@ -26,3 +26,16 @@ export type nftStatus = {
     background: string
     glasses: string
 }
+
+export type nftMeatadata = {
+    description: string
+    external_url: string
+    image: string
+    name: string
+    attributes: nftAttributes[]
+}
+
+export type nftAttributes = {
+    trait_type: string
+    value: string
+}
