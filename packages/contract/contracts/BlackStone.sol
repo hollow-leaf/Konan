@@ -10,10 +10,14 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import {IBlackStoneEvent} from "./interfaces/events/IBlackStoneEvent.sol";
 
-contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackStoneEvent {
+contract BlackStone is
+    ERC721A,
+    ReentrancyGuard,
+    VRFConsumerBaseV2Plus,
+    IBlackStoneEvent
+{
     uint256 public immutable maxPerAddressDuringMint;
     uint256 public immutable amountForDevs;
-    uint256 public immutable amountForAuctionAndDev;
     uint256 public immutable totalTypes;
     uint256[] public drawTypes;
     struct RequestStatus {
@@ -22,30 +26,34 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         uint256 drawId;
         uint256 rank;
     }
-    mapping(uint256 => RequestStatus) public s_requests; 
+    mapping(uint256 => RequestStatus) public s_requests;
     IVRFCoordinatorV2Plus COORDINATOR;
-    uint64 public requestNum;
     uint256 public lastRequestId;
     uint256 s_subscriptionId;
     uint32 callbackGasLimit = 100000;
     uint16 requestConfirmations = 3;
     uint32 numWords = 1;
-    bytes32 public keyHash = 0x1770bdc7eec7771f7ba4ffd640f34260d7f095b79c92d34a5b2551d6f6cfd2be;
+    bytes32 public keyHash =
+        0x1770bdc7eec7771f7ba4ffd640f34260d7f095b79c92d34a5b2551d6f6cfd2be;
     address public vrfCoordinator = 0x5CE8D5A2BC84beb22a398CCA51996F7930313D61;
     struct SaleConfig {
-        uint32 auctionSaleStartTime;
-        uint32 publicSaleStartTime;
-        uint64 mintlistPrice;
-        uint64 publicPrice;
-        uint32 publicSaleKey;
+        uint256 publicSaleStartTime;
+        uint256 publicPriceWei;
+    }
+
+    struct SpecialEvent {
+        bool exists;
+        uint256 startTimestamp;
+        uint256 endTimestamp;
+        uint256[] probability;
     }
 
     SaleConfig public saleConfig;
 
-    mapping(address => uint256) public allowlist;
-
     // lotteryDraw probability
     mapping(uint256 => uint256[]) public drawProbability;
+    // special probability
+    mapping(uint256 => SpecialEvent) public specialProbability;
     // tokenId to drawId to drawIndex
     mapping(uint256 => mapping(uint256 => uint256)) public drawStatus;
     // requestId to tokenId to drawId
@@ -56,20 +64,17 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         uint256 maxBatchSize_,
         uint256[] memory drawtypes_,
         uint256 collectionSize_,
-        uint256 amountForAuctionAndDev_,
         uint256 amountForDevs_
-    ) ERC721A("BlackStone", "BROCK", maxBatchSize_, collectionSize_) VRFConsumerBaseV2Plus(vrfCoordinator){
+    )
+        ERC721A("BlackStone", "BROCK", maxBatchSize_, collectionSize_)
+        VRFConsumerBaseV2Plus(vrfCoordinator)
+    {
         totalTypes = drawtypes_.length;
         drawTypes = drawtypes_;
         s_subscriptionId = subscriptionId;
         COORDINATOR = IVRFCoordinatorV2Plus(vrfCoordinator);
         maxPerAddressDuringMint = maxBatchSize_;
-        amountForAuctionAndDev = amountForAuctionAndDev_;
         amountForDevs = amountForDevs_;
-        require(
-            amountForAuctionAndDev_ <= collectionSize_,
-            "larger collection size needed"
-        );
     }
 
     modifier callerIsUser() {
@@ -82,9 +87,31 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         uint256[] memory probability
     ) external onlyOwner {
         require(
-            drawProbability[drawId].length == 0,
-            "Draw property already set"
+            drawTypes[drawId] == probability.length,
+            "Draw property length does not match draw type"
         );
+        uint256 checkSum = 0;
+        for (uint i = 0; i < probability.length; i++) {
+            checkSum += probability[i];
+        }
+        require(checkSum == 100, "total probability should be 100");
+        drawProbability[drawId] = probability;
+        emit DrawPropertySet(drawId, probability);
+    }
+
+    function setupPublicSaleInfo(
+        uint256 publicPriceWei,
+        uint256 publicSaleStartTime
+    ) external onlyOwner {
+        saleConfig = SaleConfig(publicSaleStartTime, publicPriceWei);
+    }
+
+    function createSpecialEvent(
+        uint256 startTimestamp,
+        uint256 endTimestamp,
+        uint256 drawId,
+        uint256[] memory probability
+    ) external onlyOwner {
         require(
             drawTypes[drawId] == probability.length,
             "Draw property length does not match draw type"
@@ -93,34 +120,34 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         for (uint i = 0; i < probability.length; i++) {
             checkSum += probability[i];
         }
-        require(
-            checkSum == 100,
-            "total probability should be 100"
+        require(checkSum == 100, "total probability should be 100");
+        specialProbability[drawId] = SpecialEvent({
+            exists: true,
+            startTimestamp: startTimestamp,
+            endTimestamp: endTimestamp,
+            probability: probability
+        });
+        emit SpecialPropertySet(
+            drawId,
+            probability,
+            startTimestamp,
+            endTimestamp
         );
-        drawProbability[drawId] = probability;
-        emit DrawPropertySet(drawId, probability);
     }
 
+    //input your tokenId
     function drawByVRF(
         uint256 _tokenId,
         uint256 _drawId
     ) external nonReentrant {
         require(
-            drawStatus[_tokenId][_drawId] == 0,
-            "Draw already completed"
+            _drawId == 0 || drawStatus[_tokenId][0] != 0,
+            "Draw not started"
         );
-        require(
-            _drawId < totalTypes,
-            "Draw id out of range"
-        );
-        require(
-            drawProbability[_drawId].length > 0,
-            "Draw property not set"
-        );
-        require(
-            ownerOf(_tokenId) == msg.sender,
-            "not Owner"
-        );
+        require(drawStatus[_tokenId][_drawId] == 0, "Draw already completed");
+        require(_drawId < totalTypes, "Draw id out of range");
+        require(drawProbability[_drawId].length > 0, "Draw property not set");
+        require(ownerOf(_tokenId) == msg.sender, "not Owner");
         uint256 requestId = COORDINATOR.requestRandomWords(
             VRFV2PlusClient.RandomWordsRequest({
                 keyHash: keyHash,
@@ -153,11 +180,21 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         s_requests[_requestId].fulfilled = true;
         uint256 drawNumber = _randomWords[0] % 100;
         uint256 drawId = s_requests[_requestId].drawId;
-        for (uint i = 1; i < drawProbability[drawId].length; i++) {
-            if( drawNumber >= drawProbability[drawId][i] ){
-                drawNumber -= drawProbability[drawId][i];
-            }else {
-                s_requests[_requestId].rank = i+1;
+        uint256[] memory probability;
+        if (
+            specialProbability[drawId].exists &&
+            block.timestamp >= specialProbability[drawId].startTimestamp &&
+            block.timestamp <= specialProbability[drawId].endTimestamp
+        ) {
+            probability = specialProbability[drawId].probability;
+        } else {
+            probability = drawProbability[drawId];
+        }
+        for (uint i = 0; i < probability.length; i++) {
+            if (drawNumber >= probability[i]) {
+                drawNumber -= probability[i];
+            } else {
+                s_requests[_requestId].rank = i + 1;
             }
         }
     }
@@ -169,10 +206,19 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
             _exists(tokenId),
             "ERC721Metadata: URI query for nonexistent token"
         );
+        string memory baseURI = _baseURI();
         uint256 requestId = drawStatus[tokenId][0];
         uint256 number = s_requests[requestId].rank;
+        if (number == 0) {
+            return
+                bytes(baseURI).length > 0
+                    ? string(abi.encodePacked(baseURI, "0.json"))
+                    : "";
+        } else {
+            number -= 1;
+        }
         for (uint i = 1; i < drawTypes.length; i++) {
-            uint256 num = drawTypes[i];
+            uint256 num = drawTypes[i] + 1;
             uint256 requestIndex = drawStatus[tokenId][i];
             if (s_requests[requestIndex].fulfilled == true) {
                 number *= num;
@@ -182,57 +228,20 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
             }
         }
         number += 1;
-        string memory baseURI = _baseURI();
         return
             bytes(baseURI).length > 0
-                ? string(abi.encodePacked(baseURI, Strings.toString(number),".json"))
+                ? string(
+                    abi.encodePacked(baseURI, Strings.toString(number), ".json")
+                )
                 : "";
     }
 
-    function auctionMint(uint256 quantity) external payable callerIsUser {
-        uint256 _saleStartTime = uint256(saleConfig.auctionSaleStartTime);
-        require(
-            _saleStartTime != 0 && block.timestamp >= _saleStartTime,
-            "sale has not started yet"
-        );
-        require(
-            totalSupply() + quantity <= amountForAuctionAndDev,
-            "not enough remaining reserved for auction to support desired mint amount"
-        );
-        require(
-            numberMinted(msg.sender) + quantity <= maxPerAddressDuringMint,
-            "can not mint this many"
-        );
-        uint256 totalCost = getAuctionPrice(_saleStartTime) * quantity;
-        _safeMint(msg.sender, quantity);
-        refundIfOver(totalCost);
-    }
-
-    function allowlistMint() external payable callerIsUser {
-        uint256 price = uint256(saleConfig.mintlistPrice);
-        require(price != 0, "allowlist sale has not begun yet");
-        require(allowlist[msg.sender] > 0, "not eligible for allowlist mint");
-        require(totalSupply() + 1 <= collectionSize, "reached max supply");
-        allowlist[msg.sender]--;
-        _safeMint(msg.sender, 1);
-        refundIfOver(price);
-    }
-
-    function publicSaleMint(
-        uint256 quantity,
-        uint256 callerPublicSaleKey
-    ) external payable callerIsUser {
+    function publicSaleMint(uint256 quantity) external payable callerIsUser {
         SaleConfig memory config = saleConfig;
-        uint256 publicSaleKey = uint256(config.publicSaleKey);
-        uint256 publicPrice = uint256(config.publicPrice);
+        uint256 publicPrice = config.publicPriceWei;
         uint256 publicSaleStartTime = uint256(config.publicSaleStartTime);
         require(
-            publicSaleKey == callerPublicSaleKey,
-            "called with incorrect public sale key"
-        );
-
-        require(
-            isPublicSaleOn(publicPrice, publicSaleKey, publicSaleStartTime),
+            isPublicSaleOn(publicPrice, publicSaleStartTime),
             "public sale has not begun yet"
         );
         require(
@@ -242,6 +251,10 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
         require(
             numberMinted(msg.sender) + quantity <= maxPerAddressDuringMint,
             "can not mint this many"
+        );
+        require(
+            msg.value >= publicPrice * quantity,
+            "incorrect amount of ether sent"
         );
         _safeMint(msg.sender, quantity);
         refundIfOver(publicPrice * quantity);
@@ -256,71 +269,9 @@ contract BlackStone is ERC721A, ReentrancyGuard, VRFConsumerBaseV2Plus, IBlackSt
 
     function isPublicSaleOn(
         uint256 publicPriceWei,
-        uint256 publicSaleKey,
         uint256 publicSaleStartTime
     ) public view returns (bool) {
-        return
-            publicPriceWei != 0 &&
-            publicSaleKey != 0 &&
-            block.timestamp >= publicSaleStartTime;
-    }
-
-    uint256 public constant AUCTION_START_PRICE = 1 ether;
-    uint256 public constant AUCTION_END_PRICE = 0.15 ether;
-    uint256 public constant AUCTION_PRICE_CURVE_LENGTH = 340 minutes;
-    uint256 public constant AUCTION_DROP_INTERVAL = 20 minutes;
-    uint256 public constant AUCTION_DROP_PER_STEP =
-        (AUCTION_START_PRICE - AUCTION_END_PRICE) /
-            (AUCTION_PRICE_CURVE_LENGTH / AUCTION_DROP_INTERVAL);
-
-    function getAuctionPrice(
-        uint256 _saleStartTime
-    ) public view returns (uint256) {
-        if (block.timestamp < _saleStartTime) {
-            return AUCTION_START_PRICE;
-        }
-        if (block.timestamp - _saleStartTime >= AUCTION_PRICE_CURVE_LENGTH) {
-            return AUCTION_END_PRICE;
-        } else {
-            uint256 steps = (block.timestamp - _saleStartTime) /
-                AUCTION_DROP_INTERVAL;
-            return AUCTION_START_PRICE - (steps * AUCTION_DROP_PER_STEP);
-        }
-    }
-
-    function endAuctionAndSetupNonAuctionSaleInfo(
-        uint64 mintlistPriceWei,
-        uint64 publicPriceWei,
-        uint32 publicSaleStartTime
-    ) external onlyOwner {
-        saleConfig = SaleConfig(
-            0,
-            publicSaleStartTime,
-            mintlistPriceWei,
-            publicPriceWei,
-            saleConfig.publicSaleKey
-        );
-    }
-
-    function setAuctionSaleStartTime(uint32 timestamp) external onlyOwner {
-        saleConfig.auctionSaleStartTime = timestamp;
-    }
-
-    function setPublicSaleKey(uint32 key) external onlyOwner {
-        saleConfig.publicSaleKey = key;
-    }
-
-    function seedAllowlist(
-        address[] memory addresses,
-        uint256[] memory numSlots
-    ) external onlyOwner {
-        require(
-            addresses.length == numSlots.length,
-            "addresses does not match numSlots length"
-        );
-        for (uint256 i = 0; i < addresses.length; i++) {
-            allowlist[addresses[i]] = numSlots[i];
-        }
+        return publicPriceWei != 0 && block.timestamp >= publicSaleStartTime;
     }
 
     // For marketing etc.

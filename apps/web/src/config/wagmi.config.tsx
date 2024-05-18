@@ -11,6 +11,7 @@ export const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
     chains: [arbitrumSepolia],
+    ssr: true,
     transports: {
       // RPC URL for each chain
       [arbitrumSepolia.id]: http(
