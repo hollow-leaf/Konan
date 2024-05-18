@@ -4,7 +4,7 @@ import { IconButton, Typography, Box } from "@mui/material";
 
 export function Footer() {
   return (
-    <Box className="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t px-4 py-6 sm:flex-row md:px-6 text-black">
+    <Box className="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t px-4 py-6 mt-24 sm:flex-row md:px-6 text-black">
       <Typography variant="body1" className="text-black">
         © 2024 Konan Team. All rights reserved.
       </Typography>

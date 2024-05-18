@@ -7,6 +7,7 @@ toolchain go1.22.3
 require (
 	github.com/CryptoKass/blobstreamx-example v0.0.0-00010101000000-000000000000
 	github.com/ethereum/go-ethereum v1.14.0
+	github.com/joho/godotenv v1.5.1
 )
 
 require (

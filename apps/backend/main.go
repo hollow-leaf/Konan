@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"math/big"
+	"time"
 
 	"github.com/LinXJ1204/celestia-da-prover/drawableNft721"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -28,31 +29,37 @@ func main() {
 		fmt.Println(err)
 	}
 
-	start := uint64(GetUpdatedBlock()) + 1
-	if start == 0 {
-		return
+	for {
+
+		start := uint64(GetUpdatedBlock()) + 1
+		if start == 0 {
+			return
+		}
+
+		bh := start
+		fmt.Println(start)
+
+		pp, err := contract.FilterTransfer(&bind.FilterOpts{
+			Start:   start,
+			Context: ctx,
+		}, []common.Address{}, []common.Address{}, []*big.Int{})
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		for pp.Next() {
+			event := pp.Event
+			// Print out all caller addresses
+			fmt.Printf(event.TokenId.String())
+			bh = event.Raw.BlockNumber
+			UpdateNftOwnByAddress(event.To.Hex(), uint(event.TokenId.Int64()))
+			fmt.Println("\n")
+		}
+
+		UpdateBlock(uint(bh))
+
+		time.Sleep(time.Duration(5) * time.Second)
 	}
 
-	bh := start
-	fmt.Println(start)
-
-	pp, err := contract.FilterTransfer(&bind.FilterOpts{
-		Start:   start,
-		Context: ctx,
-	}, []common.Address{}, []common.Address{}, []*big.Int{})
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	for pp.Next() {
-		event := pp.Event
-		// Print out all caller addresses
-		fmt.Printf(event.TokenId.String())
-		bh = event.Raw.BlockNumber
-		UpdateNftOwnByAddress(event.To.Hex(), uint(event.TokenId.Int64()))
-		fmt.Println("\n")
-	}
-
-	UpdateBlock(uint(bh))
 }

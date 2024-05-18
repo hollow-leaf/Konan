@@ -1,27 +1,65 @@
 "use client";
-import React, { useState, Fragment } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import React, { useState, Fragment, useEffect } from "react";
 import { nftIPFS } from "@/content/ipfs/ipfs-nft";
 import { Dialog, Transition } from '@headlessui/react'
 import { nftOwn } from "@/types/types";
+import { Draw } from "./draw";
+import { useReadContract } from 'wagmi'
+import { useQuery } from "@tanstack/react-query";
+import { blackstoneABI } from "@/contracts/blackstone";
+import { Loading } from "../Loading";
+import { readContract } from '@wagmi/core'
+import { config } from "@/config/wagmi.config";
+import { getNftImageByIndex } from "@/services/api";
+
 
 
 export function NFTCard(props: { nft: nftOwn }) {
   const [isOpen, sstIsOpen] = useState<boolean>(false)
-  
+  const [uri, setURI] = useState<string>("https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z")
+
   function closeModal() {
     sstIsOpen(false)
   }
 
+  async function getNftImage(nftId: number): Promise<string> {
+    const result:any = await readContract(config, {
+      abi: blackstoneABI,
+      address: '0x585a1DDaB9116F483d367bCa6eb64797252051c8',
+      functionName: 'tokenURI',
+      args: [props.nft.nftId],
+    })
+    if(result) {
+      const index = result.split("/")[3].split(".")[0]
+      const uri = await getNftImageByIndex(Number(index))
+      return uri
+    }
+    return ""
+  }
+
+  useEffect(() => {
+    getNftImage(props.nft.nftId).then(res => {
+      if(res) {
+        console.log(res)
+        setURI("https://gateway.pinata.cloud/ipfs/" + res)
+      }
+    })
+  })
+
   return (
     <div className="p-5 rounded-xl w-2/12	shadow-lg m-2 min-w-[250px]" onClick={()=>{sstIsOpen(true)}}>
-      <div className="rounded-xl cursor-pointer">
-        <img className="ms-auto max-h-xs rounded-xl" src={nftIPFS[1].src} alt="image description" />
-        <p className="p-2">{nftIPFS[1].name}</p>
+      <div>
+      {false || false ?<></>:
+        <div className="rounded-xl cursor-pointer flex flex-col content-center">
+          <img className="ms-auto max-h-xs rounded-xl" src={uri} alt="image description" />
+          {uri != "https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z"
+          ?
+          <p className="text-2xl font-medium font-sans p-2 text-center">Dinosaur #{props.nft.nftId}</p>
+          :
+          <p className="text-2xl font-medium font-sans p-2 text-center">Dinosaur</p>
+          }
+        </div>
+      }
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -55,32 +93,29 @@ export function NFTCard(props: { nft: nftOwn }) {
                               </svg>
                             </div>
                             <div className="flex px-16 pb-4">
-                              <div className="rounded-lg shadow-2xl p-2 max-h-[500px]">
-                                <img className="ms-auto max-w-xs" src="/main1.png" alt="image description" />
-                                <div className="absolute bottom-5 left-8 rounded-lg bg-orange-100 py-6 px-16"><p className="freeman-regular text-3xl font-medium">Dinosaur #1</p></div>
+                              <div className="rounded-lg shadow-2xl max-h-[0px]">
+                                <img className="rounded-xl ms-auto max-w-xs" src={uri} alt="image description" />
                               </div>
                               <div className="py-6 pl-14 w-full">
                                 <div className="px-2 min-h-48">
-                                  <p className="text-2xl font-medium font-sans">Dinosaur #1</p>
-                                  <p className="text-lg font-sans text-orange-400">Created by SoloLin</p>
+                                  <p className="text-2xl font-medium font-sans">Dinosaur #{props.nft.nftId}</p>
+                                  <p className="text-lg font-sans text-orange-400">Created by Sophia</p>
                                   <p className="mt-1 text-xs font-sans">arbitrum sepolia:</p>
                                   <p className="text-xs font-sans">{"0xf3419771c2551f88a91Db61cB874347f05640172"}</p>
                                 </div>
-                                <div>
+                                {uri != "https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z"
+                                ?
+                                <><div>
                                   <p className="p-2 text-2xl font-medium font-sans">Accessories</p>
                                 </div>
                                 <div className="flex flex-wrap justify-around">
-                                  <div className="flex justify-center items-center">
-                                    <div className="flex absolute w-40 h-40 z-50 opacity-0 text-2xl font-medium cursor-pointer hover:opacity-90 rounded-xl items-center justify-center bg-black/40">UnLock!</div>
-                                    <div className="flex absolute w-36 h-36 z-40 opacity-30 text-2xl font-medium cursor-pointer rounded-xl items-center justify-center bg-center bg-cover bg-[url('/sunglasses.png')] bg-black/10"></div>
-                                    <img className="rounded-lg border-2 w-40 h-40 opacity-40 p-2" src="https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z" alt="image description" />
-                                  </div>
-                                  <div className="flex justify-center items-center">
-                                    <div className="flex absolute w-40 h-40 z-50 opacity-0 text-2xl font-medium cursor-pointer hover:opacity-90 rounded-xl items-center justify-center bg-black/40">UnLock!</div>
-                                    <div className="flex absolute w-36 h-36 z-40 opacity-30 text-2xl font-medium cursor-pointer rounded-xl items-center justify-center bg-center bg-cover bg-[url('/background.png')] bg-black/10"></div>
-                                    <img className="rounded-lg border-2 w-40 h-40 opacity-40 p-2" src="https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z" alt="image description" />
-                                  </div>
-                                </div>
+                                  <Draw tokenId={props.nft.nftId} drawId={1} url={"https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z"} type="Background" />
+                                  <Draw tokenId={props.nft.nftId} drawId={2} url={"https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z"} type="Glasses"/>
+                                </div></>
+                                :
+                                <div>
+                                  <Draw tokenId={props.nft.nftId} drawId={0} url={"https://gateway.pinata.cloud/ipfs/QmeobMV4X8WZNfQJhmUgMFh3gZ6rAsWD63wVuENazZM24Z"} type="Dinosaur" />
+                                </div>}
                               </div>
                             </div>
                           </div>

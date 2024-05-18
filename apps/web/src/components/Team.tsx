@@ -36,7 +36,6 @@ export function Team() {
                   <LinkedIn className="text-2xl hover:text-gray-500" />
                 </Link>
               </div>
-              
             </div>
           </Box>
         ))}

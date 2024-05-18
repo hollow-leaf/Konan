@@ -80,3 +80,26 @@ export async function getNftosByAddress(Address:string): Promise<nftOwn[]> {
         return []
     }
 }
+
+export async function getNftImageByIndex(index: number): Promise<string> {
+    try {
+        let body = {
+            "id": index
+        }
+        const res = await fetch(HOST + '/getNftURIById', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+          })
+        if(res){
+            const rres = await res.json()
+            return rres.uri.split("//")[1]
+        }else{
+            return ""
+        }
+    }
+    catch (err) {
+        console.log("error", err);
+        return ""
+    }
+}
